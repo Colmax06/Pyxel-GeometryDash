@@ -1,3 +1,6 @@
+PyxelStudio: https://www.pyxelstudio.net/studio/6tflw4
+Github: https://github.com/Colmax06/Pyxel-GeometryDash (Private)
+
 18/12/2025 et 08/01/2026: Pendant ces deux jours, Elvis (Maxime absent) a travaillé sur le début des graphismes et le premier spike qui revient tout le temps pour que le jeu dure plus longtemps. Dans les prochaines séances, on voudrait ajouter d autre mécanique pour rendre le jeu plus intérésant.
 
 22/12/2025 - 27/12/2025 (vancance de Noël): nous avons crée plusieurs fichiers .py pour chaques parties du jeu:
