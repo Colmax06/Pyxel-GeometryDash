@@ -188,7 +188,7 @@ def lvl1(spike_y_min): #saut de block (+60/55 en x) ; saut de 2spike (+10 en x)
         {'x': 2542+150, 'y': spike_y_min - 128, 'type': 'spike', 'turned': False},
         {'x': 2478+150, 'y': spike_y_min - 128, 'type': 'spike', 'turned': False},
         
-    ],400
+    ],2700
 def lvl2(spike_y_min): #saut de block (+60/55 en x) ; saut de 2spike (+10 en x)
     return [
         {'x': 250, 'y': spike_y_min-20, 'type': 'orb', 'used': False},

@@ -51,7 +51,6 @@ level1_song = False
 
 #Variables souvent utilisés
 def reset_death():
-    global current_level, obstacle_liste
     if current_level == 'level1':
         return lvl1(spike_y_min)
     elif current_level == 'level2':
@@ -93,10 +92,11 @@ def collision(obstacle):
         return True
     return False
 def end_level_var():
-    global end_level, speed
+    global end_level
     end_level -= speed
 def QUIT_LEVEL():
-    global finish_level, end_level, current_level, obstacle_liste, level1, level1_song, obstacle_level_bool, level2, in_level, menu, game_menu, ESC_level, son_game_over, cube_y, cube_y_min, velocity_y, speed, jump, game_over
+    global finish_level, end_level, current_level, obstacle_liste, level1, level1_song, obstacle_level_bool
+    global level2, in_level, menu, game_menu, ESC_level, son_game_over, cube_y, velocity_y, speed, jump, game_over
     if current_level == 'level1':
         obstacle_liste, end_level = lvl1(spike_y_min)
         level1 = False
@@ -126,7 +126,7 @@ def QUIT_LEVEL():
 
 #level update et draw
 def niveau_update(): #a faire: les songs
-    global obstacle_level_bool, obstacle_liste, level1_song, jump, is_jump, velocity_y, cube_y, cube_rotation, cube_rot, game_over, speed, son_game_over, current_level, end_level, finish_level
+    global obstacle_level_bool, obstacle_liste, level1_song, jump, velocity_y, cube_y, cube_rotation, cube_rot, game_over, speed, son_game_over, end_level, finish_level
     if not obstacle_level_bool:
         pyxel.mouse(False)
         obstacle_liste, end_level = reset_death()
@@ -141,7 +141,6 @@ def niveau_update(): #a faire: les songs
     #Saut du cube
     if pyxel.btn(pyxel.KEY_SPACE) and jump==False:
         jump = True
-        is_jump = True
         velocity_y = jump_strength
         cube_rot = True
     cube_y += velocity_y
@@ -151,7 +150,6 @@ def niveau_update(): #a faire: les songs
         if obstacle['type']=='orb':
             if obstacle['used']==False and collision(obstacle) and pyxel.btn(pyxel.KEY_SPACE): #A CONTINUER
                 jump = True
-                is_jump = True
                 velocity_y = jump_strength
                 cube_rot = True
                 obstacle['used']=True
@@ -175,18 +173,12 @@ def niveau_update(): #a faire: les songs
                 cube_y = obstacle['y'] - 16
                 velocity_y = 0
                 jump = False
-                is_jump = False
     
-
-
-
-
 
     #cube va au minimum au sol
     if cube_y >= cube_y_min:
         cube_y = cube_y_min
         jump = False
-        is_jump = False
         velocity_y = 0
 
     for obstacle in obstacle_liste:
@@ -211,7 +203,6 @@ def niveau_update(): #a faire: les songs
     #endlevel
     if cube_x>=end_level:
         finish_level = True
-    #A FINIR (CUBE DOIT S ARRETER)
     if finish_level:
         stop()
         if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < 5+16 and pyxel.mouse_x > 5 and pyxel.mouse_y < 5+16 and pyxel.mouse_y > 5 or pyxel.btnp(pyxel.KEY_ESCAPE):
@@ -266,8 +257,9 @@ def niveau_draw():
 
 
 def update():
-    global cube_x, cube_y, spike_y_min, velocity_y, velocity_x, jump, game_over, speed, obstacle_liste, son_game_over, cube_rotation, cube_rot, game_menu, menu
-    global level1_song, ESC_level, obstacle_liste, obstacle_level_bool, in_level, chosen_level, current_level, is_jump
+    global cube_y, velocity_y, velocity_x, jump, game_over, speed, son_game_over
+    global cube_rotation, cube_rot, game_menu, menu, level1_song, ESC_level
+    global obstacle_level_bool, in_level, chosen_level, current_level, is_jump
     global level1, level2
 
     if menu:
@@ -298,28 +290,26 @@ def update():
         if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < x/2+16 and pyxel.mouse_x > x/2-16 and pyxel.mouse_y < y/2+16 and pyxel.mouse_y > y/2-16:
             speed = velocity_x
             jump = is_jump
+            is_jump = False
+            pyxel.mouse(False)
             ESC_level = False
+            
     if in_level and pyxel.btnp(pyxel.KEY_ESCAPE):
+        is_jump = jump
         ESC_level = True
-        
-        
-
 
 
 def draw():
-    global cube_x, cube_y, spike_y_min, game_over, cube_rotation, level1, game_menu, menu, chosen_level, chosen_level_max, in_level, ESC_level, current_level
-    global obstacle_liste, game_over, son_game_over, obstacle_level_bool, cube_y_min, x, y, cube_rotation, cube_x, cube_y, obstacle_liste, game_over
 
     if menu: #menu
         menu_draw(game_menu, chosen_level, x, y)
-
 
     if in_level: #dans le niveau
         niveau_draw() #chaque level dessine la même chose
 
     if ESC_level:
-            pyxel.blt(5, 5, 1, 48, 0, 16, 16,0) #croix (quitter)
-            pyxel.blt(x/2-16, y/2-16, 1, 0, 0, 32, 32,0) #bouton reprendre
+        pyxel.blt(5, 5, 1, 48, 0, 16, 16,0) #croix (quitter)
+        pyxel.blt(x/2-16, y/2-16, 1, 0, 0, 32, 32,0) #bouton reprendre
 
 
 
