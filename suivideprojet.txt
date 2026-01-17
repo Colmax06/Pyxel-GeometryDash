@@ -10,4 +10,4 @@
 
 15/01/2026: Nous avons terminé de faire le niveau et un peu commencé le niveau 2. Nous avons commencé à faire la fin du niveau (+ dessins) (bientot fini), nous avons aussi essayé de faire/continué la musique mais je pense plutot que nous allons créer un .mp3 et jouer cette musique (ou supprimer la musique nous allons voir). 
 
-17/01/2026: Maxime a remis level.py dans app.py car cela complique les choses même si c est un peu moins bien organisé mais c est mieux visible (à voir si on fait pareil pour menu.py et obstacleslvls.py <-- pas sur car mieux pour travaillé chaqu'un sur un différent truc (un le niveau et un la mécanique))
+17/01/2026: Maxime a remis level.py dans app.py car cela complique les choses même si c est un peu moins bien organisé mais c est mieux visible (à voir si on fait pareil pour menu.py et obstacleslvls.py <-- pas sur car mieux pour travaillé chaqu'un sur un différent truc (un le niveau et un la mécanique)). Fix des bugs sur la fin du niveau + petite optimisation du code
