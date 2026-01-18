@@ -17,4 +17,4 @@ Github: https://github.com/Colmax06/Pyxel-GeometryDash (Private)
 Bugs à fix: quand le cube tombe, il peut quand même sauter dans les airs
 
 
-optimisation (variables qui ne servent a rien dans le global + variables répétés)
+18/01/2026: optimisation (variables qui ne servent a rien dans le global + variables répétés)
