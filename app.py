@@ -26,7 +26,7 @@ jump = False
 is_jump = False
 game_over = False
 
-#noclip = True
+noclip = False
 
 #Game
 menu = True
@@ -101,7 +101,7 @@ def QUIT_LEVEL():
         obstacle_liste, end_level = lvl1(spike_y_min)
         level1 = False
 
-            
+
     elif current_level == 'level2':
         obstacle_liste, end_level = lvl2(spike_y_min)
         level2 = False
@@ -124,6 +124,18 @@ def QUIT_LEVEL():
     jump = False
     game_over = False
 
+def noclip_change():
+    if pyxel.btnp(pyxel.KEY_H):
+        if noclip:
+            return False
+        return True
+    else:
+        return noclip
+def show_noclip():
+    if noclip:
+        pyxel.text(x-30,5,"NOCLIP",8)
+
+
 #level update et draw
 def niveau_update(): #a faire: les songs
     global obstacle_level_bool, obstacle_liste, level1_song, jump, velocity_y, cube_y, cube_rotation, cube_rot, game_over, speed, son_game_over, end_level, finish_level
@@ -133,6 +145,7 @@ def niveau_update(): #a faire: les songs
         obstacle_level_bool = True
     #Obstacles:
     deplacement_obstacles(obstacle_liste)
+
 
     if not level1_song:
         pyxel.playm(0,0,True)
@@ -173,7 +186,7 @@ def niveau_update(): #a faire: les songs
                 cube_y = obstacle['y'] - 16
                 velocity_y = 0
                 jump = False
-    
+
 
     #cube va au minimum au sol
     if cube_y >= cube_y_min:
@@ -182,10 +195,10 @@ def niveau_update(): #a faire: les songs
         velocity_y = 0
 
     for obstacle in obstacle_liste:
-        if collision(obstacle) and not obstacle['type']=='orb':
+        if collision(obstacle) and not obstacle['type']=='orb' and noclip==False:
             game_over = True
             stop()
-            
+
             if not son_game_over:
                 pyxel.stop()
                 pyxel.play(0, 63)
@@ -199,7 +212,7 @@ def niveau_update(): #a faire: les songs
                 son_game_over = False
                 game_over = False
                 level1_song = False
-    
+
     #endlevel
     if cube_x>=end_level:
         finish_level = True
@@ -247,7 +260,7 @@ def niveau_draw():
     if game_over:
         pyxel.text(70, 70, "GAME OVER", 8)
         pyxel.text(55, 80, "R pour recommencer", 7)
-    
+
     if finish_level:
         pyxel.text(70, 70, "LEVEL FINISHED", 8)
         pyxel.text(55, 80, "R pour recommencer", 7)
@@ -260,10 +273,13 @@ def update():
     global cube_y, velocity_y, velocity_x, jump, game_over, speed, son_game_over
     global cube_rotation, cube_rot, game_menu, menu, level1_song, ESC_level
     global obstacle_level_bool, in_level, chosen_level, current_level, is_jump
-    global level1, level2
+    global noclip, level1, level2
 
     if menu:
         game_menu, chosen_level, level1, level2, current_level, menu, in_level = menu_update(game_menu, chosen_level, level1, level2, current_level, menu, in_level, chosen_level_max, x, y)
+
+    #noclip
+    noclip = noclip_change()
 
     #différents obstacles pour chaques niveaux
     if level1:
@@ -293,7 +309,7 @@ def update():
             is_jump = False
             pyxel.mouse(False)
             ESC_level = False
-            
+
     if in_level and pyxel.btnp(pyxel.KEY_ESCAPE):
         is_jump = jump
         ESC_level = True
@@ -304,9 +320,10 @@ def draw():
     if menu: #menu
         menu_draw(game_menu, chosen_level, x, y)
 
+    
     if in_level: #dans le niveau
         niveau_draw() #chaque level dessine la même chose
-
+    show_noclip()
     if ESC_level:
         pyxel.blt(5, 5, 1, 48, 0, 16, 16,0) #croix (quitter)
         pyxel.blt(x/2-16, y/2-16, 1, 0, 0, 32, 32,0) #bouton reprendre
