@@ -224,4 +224,4 @@ def lvl2(spike_y_min): #saut de block (+60/55 en x) ; saut de 2spike (+10 en x)
         {'x': 950+16, 'y': spike_y_min - 80, 'type': 'block'},
         {'x': 950+16, 'y': spike_y_min - 96, 'type': 'block'},
         {'x': 950+16, 'y': spike_y_min - 112, 'type': 'spike', 'turned': False},
-    ],67
+    ],1000

@@ -4,12 +4,13 @@ from menu import *
 
 x = 300
 y = 200
-pyxel.init(x, y, quit_key=pyxel.KEY_N)
+pyxel.init(x, y, quit_key=pyxel.KEY_P)
 pyxel.load("geometrydash.pyxres")
 pyxel.mouse(True)
 
 #cube
 cube_x = 40
+cube_x_pourc = 0
 cube_y_min = 150
 cube_y = cube_y_min
 spike_y_min = cube_y_min
@@ -40,6 +41,7 @@ level1 = False
 level2 = False
 
 #Obstacles
+level_pourcentage = 0
 obstacle_liste = []
 obstacle_level_bool = False
 obstacle_liste_temp = []
@@ -125,7 +127,7 @@ def QUIT_LEVEL():
     game_over = False
 
 def noclip_change():
-    if pyxel.btnp(pyxel.KEY_H):
+    if pyxel.btnp(pyxel.KEY_N):
         if noclip:
             return False
         return True
@@ -134,18 +136,29 @@ def noclip_change():
 def show_noclip():
     if noclip:
         pyxel.text(x-30,5,"NOCLIP",8)
-
+def level_pourc():
+    global cube_x_pourc, level_pourcentage
+    cube_x_pourc += speed
+    level_pourcentage = int(cube_x_pourc/(end_level_pourc-cube_x)*10000)
+    level_pourcentage = level_pourcentage/100
+    if level_pourcentage >= 100:
+        level_pourcentage = 100
 
 #level update et draw
 def niveau_update(): #a faire: les songs
-    global obstacle_level_bool, obstacle_liste, level1_song, jump, velocity_y, cube_y, cube_rotation, cube_rot, game_over, speed, son_game_over, end_level, finish_level
+    global obstacle_level_bool, obstacle_liste, level1_song, jump, velocity_y, cube_y, cube_rotation, cube_rot, game_over, speed, son_game_over, end_level, finish_level, level_pourcentage, end_level_pourc, cube_x_pourc
     if not obstacle_level_bool:
         pyxel.mouse(False)
         obstacle_liste, end_level = reset_death()
+        end_level_pourc = end_level
+        cube_x_pourc = 0
+        level_pourcentage = 0
         obstacle_level_bool = True
     #Obstacles:
     deplacement_obstacles(obstacle_liste)
 
+    #Pourcentage du niveau:
+    level_pourc()
 
     if not level1_song:
         pyxel.playm(0,0,True)
@@ -212,6 +225,7 @@ def niveau_update(): #a faire: les songs
                 son_game_over = False
                 game_over = False
                 level1_song = False
+                obstacle_level_bool = False
 
     #endlevel
     if cube_x>=end_level:
@@ -230,6 +244,8 @@ def niveau_update(): #a faire: les songs
             game_over = False
             level1_song = False
             finish_level = False
+            obstacle_level_bool = False
+
 def niveau_draw():
     pyxel.cls(1)
     #Sol blanc
@@ -267,6 +283,7 @@ def niveau_draw():
         pyxel.text(55, 90, "ESC pour quitter", 7)
         #Quitter
         pyxel.blt(5, 5, 1, 48, 0, 16, 16,0)
+    pyxel.text(x//2-15, 5, f"{str(level_pourcentage)}%", 8)
 
 
 def update():
@@ -320,7 +337,7 @@ def draw():
     if menu: #menu
         menu_draw(game_menu, chosen_level, x, y)
 
-    
+
     if in_level: #dans le niveau
         niveau_draw() #chaque level dessine la même chose
     show_noclip()
