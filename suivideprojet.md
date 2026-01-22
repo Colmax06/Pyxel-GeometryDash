@@ -1,8 +1,8 @@
-# 📝 Suidi de Projet
+# 📝 <span style="color:red">Suidi de Projet</span>
 
 ---
 
-## 📅 18/12/2025 et 08/01/2026:
+## 📅 <span style="color:orange">18/12/2025 et 08/01/2026:</span>
 ### ✅ Ajouts / Changements:
 Pendant ces deux jours, Elvis (Maxime absent) a travaillé sur le début des graphismes et le premier spike qui revient tout le temps pour que le jeu dure plus longtemps.
 ### 📝 À faire:
@@ -11,7 +11,7 @@ Ajouter d'autres mécaniques pour rendre le jeu plus intérésant.
 ---
 <br></br>
 
-## 📅 22/12/2025 - 27/12/2025 (vancance de Noël):
+## 📅 <span style="color:orange">22/12/2025 - 27/12/2025 (vancance de Noël):</span>
 ### ✅ Ajouts / Changements:
 Nous avons crée plusieurs fichiers .py pour chaques parties du jeu:
     - app.py: la carte mère du jeu qui rassemble tous les fichiers.py pour faire tourner le jeu
@@ -27,7 +27,7 @@ Problèmes level_update() devait changer les variables mais il fallait juste ret
 ---
 <br></br>
 
-## 📅 12/01/2026:
+## 📅 <span style="color:orange">12/01/2026:</span>
 ### ✅ Ajouts / Changements:
 - Continué de faire les niveaux
 - Orbs (jaune)
@@ -40,7 +40,7 @@ Modifier encore un peu la gravité du joueur
 ---
 <br></br>
 
-## 📅 15/01/2026:
+## 📅 <span style="color:orange">15/01/2026:</span>
 ### ✅ Ajouts / Changements:
 - Terminé de faire le niveau et un peu commencé le niveau 2
 - Commencé à faire la fin du niveau (+ dessins) (bientot fini)
@@ -50,7 +50,7 @@ Modifier encore un peu la gravité du joueur
 ---
 <br></br>
 
-## 📅 17/01/2026:
+## 📅 <span style="color:orange">17/01/2026:</span>
 ### ✅ Ajouts / Changements:
 - Maxime a remis level.py dans app.py car cela complique les choses même si c est un peu moins bien organisé mais c est mieux visible (). Fix des bugs sur la fin du niveau + petite optimisation du code. optimisation (variables qui ne servent a rien dans le global + variables répétés)
 ### 📝 À faire:
@@ -60,7 +60,7 @@ Modifier encore un peu la gravité du joueur
 ---
 <br></br>
 
-## 📅 19/01/2026:
+## 📅 <span style="color:orange">19/01/2026:</span>
 ### ✅ Ajouts / Changements:
 - Noclip pour pouvoir aller à la fin du niveau sans mourir
 - Pourcentage du niveau où l'utilisateur est
