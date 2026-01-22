@@ -1,26 +1,68 @@
-PyxelStudio: https://www.pyxelstudio.net/studio/6tflw4
-Github: https://github.com/Colmax06/Pyxel-GeometryDash (Public)
+# 📝 <span style="color:red">Suidi de Projet</span>
 
-# 18/12/2025 et 08/01/2026:
-Pendant ces deux jours, Elvis (Maxime absent) a travaillé sur le début des graphismes et le premier spike qui revient tout le temps pour que le jeu dure plus longtemps. Dans les prochaines séances, on voudrait ajouter d autre mécanique pour rendre le jeu plus intérésant.
+---
 
-# 22/12/2025 - 27/12/2025 (vancance de Noël):
-nous avons crée plusieurs fichiers .py pour chaques parties du jeu:
+## 📅 <span style="color:orange">18/12/2025 et 08/01/2026:</span>
+### ✅ Ajouts / Changements:
+Pendant ces deux jours, Elvis (Maxime absent) a travaillé sur le début des graphismes et le premier spike qui revient tout le temps pour que le jeu dure plus longtemps.
+### 📝 À faire:
+Ajouter d'autres mécaniques pour rendre le jeu plus intérésant.
+
+---
+<br></br>
+
+## 📅 <span style="color:orange">22/12/2025 - 27/12/2025 (vancance de Noël):</span>
+### ✅ Ajouts / Changements:
+Nous avons crée plusieurs fichiers .py pour chaques parties du jeu:
     - app.py: la carte mère du jeu qui rassemble tous les fichiers.py pour faire tourner le jeu
-    - level.py: il devrait y avoir normalement niveau_draw() --> ce qui va être dessiner et niveau_update() --> pour gérer le déplacement des obstacles et du cube. Il n y a que le niveau_draw() pour le moment et le niveau_update() devrait arriver bientot dedans mais il y a des erreurs que je n arrive pas a fix (il se trouve actuellement dans le app.py)
+    - level.py: il devrait y avoir normalement niveau_draw() --> ce qui va être dessiner et niveau_update() --> pour gérer le déplacement des obstacles et du cube. Il n'y a que le niveau_draw() pour le moment et le niveau_update() devrait arriver bientot dedans mais il y a des erreurs que je n arrive pas a fix (il se trouve actuellement dans le app.py)
     - menu.py: menu principal du jeu pour choisir le niveau. menu_update() pour update les variables et menu_draw() pour dessier le menu
     - obstacleslvls.py: une fonction par niveau et chaque fonction contient des dictionnaires pour chaque obstacles dans le jeu
+### ⚠️ Problèmes Rencontrés:
+Problèmes level_update() devait changer les variables mais il fallait juste return les variables
+### 📝 À faire:
+- Continuer les niveaux
+- Ajouter des orbs
 
-# 12/01/2026:
-nous avons continué de faire les niveaux, nous avons rajouter les orbs, nous avons modifier la gravité et augmenter un peu la vitesse du joueur (on doit encore un petit modifier la gravité).
+---
+<br></br>
 
-# 15/01/2026:
-Nous avons terminé de faire le niveau et un peu commencé le niveau 2. Nous avons commencé à faire la fin du niveau (+ dessins) (bientot fini), nous avons aussi essayé de faire/continué la musique mais je pense plutot que nous allons créer un .mp3 et jouer cette musique (ou supprimer la musique nous allons voir). 
+## 📅 <span style="color:orange">12/01/2026:</span>
+### ✅ Ajouts / Changements:
+- Continué de faire les niveaux
+- Orbs (jaune)
+- Modifier la gravité et augmenter un peu la vitesse du joueur
+### ⚠️ Problèmes Rencontrés:
+- Lorsqu'on sautait sur l'orb, le cube montais vers le haut à l'infini
+### 📝 À faire:
+Modifier encore un peu la gravité du joueur
 
-# 17/01/2026:
-Maxime a remis level.py dans app.py car cela complique les choses même si c est un peu moins bien organisé mais c est mieux visible (à voir si on fait pareil pour menu.py et obstacleslvls.py <-- pas sur car mieux pour travaillé chaqu'un sur un différent truc (un le niveau et un la mécanique)). Fix des bugs sur la fin du niveau + petite optimisation du code. optimisation (variables qui ne servent a rien dans le global + variables répétés)
-Bugs à fix: quand le cube tombe, il peut quand même sauter dans les airs
+---
+<br></br>
 
+## 📅 <span style="color:orange">15/01/2026:</span>
+### ✅ Ajouts / Changements:
+- Terminé de faire le niveau et un peu commencé le niveau 2
+- Commencé à faire la fin du niveau (+ dessins) (bientot fini)
+### 📝 À faire:
+- Régler la musique: nous allons créer un .mp3 et jouer cette musique (ou supprimer la musique nous allons voir). 
 
-# 19/01/2026:
-ajout du noclip pour pouvoir aller à la fin du niveau sans mourir (erreurs rencontrés:   noclip = noclip() <--TypeError: 'NoneType' object is not callable). Ajout du pourcentage du niveau où l'utilisateur est
+---
+<br></br>
+
+## 📅 <span style="color:orange">17/01/2026:</span>
+### ✅ Ajouts / Changements:
+- Maxime a remis level.py dans app.py car cela complique les choses même si c est un peu moins bien organisé mais c est mieux visible (). Fix des bugs sur la fin du niveau + petite optimisation du code. optimisation (variables qui ne servent a rien dans le global + variables répétés)
+### 📝 À faire:
+- Quand le cube tombe, il peut quand même sauter dans les airs
+- A voir si on mets aussi, dans app.py, menu.py (pas obstacleslvls.py)
+
+---
+<br></br>
+
+## 📅 <span style="color:orange">19/01/2026:</span>
+### ✅ Ajouts / Changements:
+- Noclip pour pouvoir aller à la fin du niveau sans mourir
+- Pourcentage du niveau où l'utilisateur est
+### ⚠️ Problèmes Rencontrés:
+noclip = noclip() <--TypeError: 'NoneType' object is not callable --> Il fallait juste change le nom de la fonction car le code bug lorsque qu'une variable a le même nom qu'un fonction
