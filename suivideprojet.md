@@ -13,10 +13,10 @@ Ajouter d'autres mécaniques pour rendre le jeu plus intérésant.
 
 ## 📅 <span style="color:orange">22/12/2025 - 27/12/2025 (vancance de Noël):</span>
 ### ✅ Ajouts / Changements:
-Nous avons crée plusieurs fichiers .py pour chaques parties du jeu:
-    - app.py: la carte mère du jeu qui rassemble tous les fichiers.py pour faire tourner le jeu
-    - level.py: il devrait y avoir normalement niveau_draw() --> ce qui va être dessiner et niveau_update() --> pour gérer le déplacement des obstacles et du cube. Il n'y a que le niveau_draw() pour le moment et le niveau_update() devrait arriver bientot dedans mais il y a des erreurs que je n arrive pas a fix (il se trouve actuellement dans le app.py)
-    - menu.py: menu principal du jeu pour choisir le niveau. menu_update() pour update les variables et menu_draw() pour dessier le menu
+Nous avons crée plusieurs fichiers .py pour chaques parties du jeu:<br></br>
+    - app.py: la carte mère du jeu qui rassemble tous les fichiers.py pour faire tourner le jeu<br></br>
+    - level.py: il devrait y avoir normalement niveau_draw() --> ce qui va être dessiner et niveau_update() --> pour gérer le déplacement des obstacles et du cube. Il n'y a que le niveau_draw() pour le moment et le niveau_update() devrait arriver bientot dedans mais il y a des erreurs que je n arrive pas a fix (il se trouve actuellement dans le app.py)<br></br>
+    - menu.py: menu principal du jeu pour choisir le niveau. menu_update() pour update les variables et menu_draw() pour dessier le menu<br></br>
     - obstacleslvls.py: une fonction par niveau et chaque fonction contient des dictionnaires pour chaque obstacles dans le jeu
 ### ⚠️ Problèmes Rencontrés:
 Problèmes level_update() devait changer les variables mais il fallait juste return les variables
