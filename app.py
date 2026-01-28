@@ -51,6 +51,9 @@ finish_level = False
 son_game_over = False
 level1_song = False
 
+#is cube falling ?
+going_down = 0
+
 #Variables souvent utilisés
 def reset_death():
     if current_level == 'level1':
@@ -93,9 +96,6 @@ def collision(obstacle):
     if (cube_droit > obs_gauche and cube_gauche < obs_droit and cube_bas > obs_haut and cube_haut < obs_bas):
         return True
     return False
-def end_level_var():
-    global end_level
-    end_level -= speed
 def QUIT_LEVEL():
     global finish_level, end_level, current_level, obstacle_liste, level1, level1_song, obstacle_level_bool
     global level2, in_level, menu, game_menu, ESC_level, son_game_over, cube_y, velocity_y, speed, jump, game_over
@@ -144,6 +144,18 @@ def level_pourc():
     if level_pourcentage >= 100:
         level_pourcentage = 100
 
+def is_going_down():
+    global going_down, y_before, y_now, jump
+    if not going_down:
+        y_before = cube_y
+        going_down = True
+    elif going_down:
+        y_now = cube_y
+        going_down = False
+        if y_before < y_now:
+            jump = True
+
+
 #level update et draw
 def niveau_update(): #a faire: les songs
     global obstacle_level_bool, obstacle_liste, level1_song, jump, velocity_y, cube_y, cube_rotation, cube_rot, game_over, speed, son_game_over, end_level, finish_level, level_pourcentage, end_level_pourc, cube_x_pourc
@@ -171,7 +183,8 @@ def niveau_update(): #a faire: les songs
         cube_rot = True
     cube_y += velocity_y
     velocity_y += gravity
-    end_level_var()
+    is_going_down()
+    end_level -= speed
     for obstacle in obstacle_liste:
         if obstacle['type']=='orb':
             if obstacle['used']==False and collision(obstacle) and pyxel.btn(pyxel.KEY_SPACE): #A CONTINUER
