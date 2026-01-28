@@ -13,10 +13,10 @@ Ajouter d'autres mécaniques pour rendre le jeu plus intérésant.
 
 ## 📅 <span style="color:orange">22/12/2025 - 27/12/2025 (vancance de Noël):</span>
 ### ✅ Ajouts / Changements:
-Nous avons crée plusieurs fichiers .py pour chaques parties du jeu:<br></br>
-    - app.py: la carte mère du jeu qui rassemble tous les fichiers.py pour faire tourner le jeu<br></br>
-    - level.py: il devrait y avoir normalement niveau_draw() --> ce qui va être dessiner et niveau_update() --> pour gérer le déplacement des obstacles et du cube. Il n'y a que le niveau_draw() pour le moment et le niveau_update() devrait arriver bientot dedans mais il y a des erreurs que je n arrive pas a fix (il se trouve actuellement dans le app.py)<br></br>
-    - menu.py: menu principal du jeu pour choisir le niveau. menu_update() pour update les variables et menu_draw() pour dessier le menu<br></br>
+- Nous avons crée plusieurs fichiers .py pour chaques parties du jeu:
+    - app.py: la carte mère du jeu qui rassemble tous les fichiers.py pour faire tourner le jeu
+    - level.py: il devrait y avoir normalement niveau_draw() --> ce qui va être dessiner et niveau_update() --> pour gérer le déplacement des obstacles et du cube. Il n'y a que le niveau_draw() pour le moment et le niveau_update() devrait arriver bientot dedans mais il y a des erreurs que je n arrive pas a fix (il se trouve actuellement dans le app.py)
+    - menu.py: menu principal du jeu pour choisir le niveau. menu_update() pour update les variables et menu_draw() pour dessier le menu
     - obstacleslvls.py: une fonction par niveau et chaque fonction contient des dictionnaires pour chaque obstacles dans le jeu
 ### ⚠️ Problèmes Rencontrés:
 Problèmes level_update() devait changer les variables mais il fallait juste return les variables
@@ -66,3 +66,12 @@ Modifier encore un peu la gravité du joueur
 - Pourcentage du niveau où l'utilisateur est
 ### ⚠️ Problèmes Rencontrés:
 noclip = noclip() <--TypeError: 'NoneType' object is not callable --> Il fallait juste change le nom de la fonction car le code bug lorsque qu'une variable a le même nom qu'un fonction
+
+---
+<br></br>
+
+## 📅 <span style="color:orange">26/01/2026:</span>
+### ✅ Ajouts / Changements:
+Fix bug où le joueur pouvait sauter dans le vide lorsqu'il tombé d'un cube/mur
+### ⚠️ Problèmes Rencontrés:
+J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a diminué, il fallait tomber faire que jump=True mais il faut en fait voir si il a augmenté (y=0 <-- en haut de la fenêtre)
