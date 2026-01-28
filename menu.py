@@ -34,10 +34,10 @@ def menu_update(game):
         #Bouton cliqué ?
         if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < game.x/2-64+128 and pyxel.mouse_x > game.x/2-64 and pyxel.mouse_y < game.y/2-16+32 and pyxel.mouse_y > game.y/2-16 or pyxel.btnp(pyxel.KEY_RETURN):
             if game.chosen_level == 1:
-                game.level1 = True
+                
                 game.current_level = 'level1'
             if game.chosen_level == 2:
-                game.level2 = True
+                
                 game.current_level = 'level2'
             game.menu = False
             game.in_level = True

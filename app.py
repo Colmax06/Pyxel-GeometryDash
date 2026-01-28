@@ -36,8 +36,8 @@ class Game:
         self.current_level = None
         self.chosen_level = 1
         self.chosen_level_max = 2
-        self.level1 = False
-        self.level2 = False
+        
+        
 
         #Obstacles
         self.level_pourcentage = 0
@@ -103,11 +103,11 @@ class Game:
     def QUIT_LEVEL(self):
         if self.current_level == 'level1':
             self.obstacle_liste, self.end_level = lvl1(self.spike_y_min)
-            self.level1 = False
+            
 
         elif self.current_level == 'level2':
             self.obstacle_liste, self.end_level = lvl2(self.spike_y_min)
-            self.level2 = False
+            
 
         self.level1_song = False
         self.level_initialisation = False
@@ -168,12 +168,13 @@ class Game:
         self.level_initialisation = False
 
     def level_init(self):
-        pyxel.mouse(False)
-        self.reset_death()
-        self.end_level_pourc = self.end_level
-        self.cube_x_pourc = 0
-        self.level_pourcentage = 0
-        self.level_initialisation = True
+        if not self.level_initialisation:
+            pyxel.mouse(False)
+            self.reset_death()
+            self.end_level_pourc = self.end_level
+            self.cube_x_pourc = 0
+            self.level_pourcentage = 0
+            self.level_initialisation = True
 
     def cube_jump_rot(self):
         #Saut du cube
@@ -232,28 +233,7 @@ class Game:
                 if pyxel.btnp(pyxel.KEY_R):
                     self.restart_level()
 
-    #level update et draw
-    def niveau_update(self): #a faire: les songs
-        if not self.level_initialisation:
-            self.level_init()
-        #Obstacles:
-        self.deplacement_obstacles()
-
-        #Pourcentage du niveau:
-        self.level_pourc()
-
-        if not self.level1_song:
-            pyxel.playm(0,0,True)
-            self.level1_song = True
-
-        #Gestion du cube
-        self.cube_jump_rot()
-
-        #Gestion d'obstacles
-        self.obstacles_gestion()
-
-       
-        #endlevel
+    def is_end_level(self):
         if self.cube_x>=self.end_level:
             self.finish_level = True
         if self.finish_level:
@@ -262,6 +242,34 @@ class Game:
                 self.QUIT_LEVEL()
             if pyxel.btnp(pyxel.KEY_R):
                 self.restart_level()
+
+    def song(self):
+        if not self.level1_song:
+            pyxel.playm(0,0,True)
+            self.level1_song = True
+
+    #level update et draw
+    def niveau_update(self): #a faire: les songs
+        #Level initialization
+        self.level_init()
+
+        #Obstacles:
+        self.deplacement_obstacles()
+
+        #Pourcentage du niveau:
+        self.level_pourc()
+
+        #Songs
+        self.song()
+
+        #Gestion du cube
+        self.cube_jump_rot()
+
+        #Gestion d'obstacles
+        self.obstacles_gestion()
+
+        #endlevel
+        self.is_end_level()
 
     def niveau_draw(self):
         pyxel.cls(1)
@@ -309,11 +317,8 @@ class Game:
         #noclip
         self.noclip = self.noclip_change()
 
-        #différents obstacles pour chaques niveaux
-        if self.level1:
-            self.niveau_update()
-
-        if self.level2:
+        #Niveau en cours
+        if self.in_level:
             self.niveau_update()
 
         #ESC dans le niveau

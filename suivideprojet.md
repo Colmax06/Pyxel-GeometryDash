@@ -75,3 +75,13 @@ noclip = noclip() <--TypeError: 'NoneType' object is not callable --> Il fallait
 Fix bug où le joueur pouvait sauter dans le vide lorsqu'il tombé d'un cube/mur
 ### ⚠️ Problèmes Rencontrés:
 J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a diminué, il fallait tomber faire que jump=True mais il faut en fait voir si il a augmenté (y=0 <-- en haut de la fenêtre)
+
+---
+<br></br>
+
+## 📅 <span style="color:orange">28/01/2026:</span>
+### ✅ Ajouts / Changements:
+- Ajouts de la class Game (pour enlever les global + meilleurs organisation + moins d'erreurs)
+- Optimisation du code (comme des variables qui ne servent à rien)
+### 📝 À faire:
+- Continuer l'optimisation du code
