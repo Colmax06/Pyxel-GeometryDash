@@ -1,12 +1,28 @@
 import pyxel
+import vlc
+from pathlib import Path
 from obstacleslvls import *
 from menu import *
 
+
+
 class Game:
     def __init__(self):
-        self.x = 300
-        self.y = 200
+        self.screen_x = 300
+        self.screen_y = 200
+        pyxel.init(self.screen_x, self.screen_y, quit_key=pyxel.KEY_P, title="GeometryDash")
+        pyxel.mouse(True)
+        pyxel.load("geometrydash.pyxres")
         
+        #vlc init
+        base_dir = Path(__file__).resolve().parent
+        songs_dir = {
+            'gameover': f"{base_dir}\\gameover.mp3",
+            'level1': f"{base_dir}\\level1.mp3",
+        }
+        self.gameover = vlc.MediaPlayer(str(songs_dir['gameover']))
+        self.level1 = vlc.MediaPlayer(str(songs_dir['level1']))
+
         #cube
         self.cube_x = 40
         self.cube_x_pourc = 0
@@ -15,6 +31,10 @@ class Game:
         self.spike_y_min = self.cube_y_min
         self.cube_rotation = 0
         self.cube_rot = False
+        #cube falling
+        self.going_down = 0
+        self.cube_y_before = 0
+        self.cube_y_now = 0
 
         #Phisique du jeu
         self.gravity = 1.45
@@ -43,26 +63,36 @@ class Game:
         self.level_pourcentage = 0
         self.obstacle_liste = []
         self.level_initialisation = False
-        self.obstacle_liste_temp = []
         self.finish_level = False
         self.end_level = 0
         self.end_level_pourc = 0
 
-        #Sons
-        self.son_game_over = False
-        self.level1_song = False
 
-        #is cube falling ?
-        self.going_down = 0
-        self.y_before = 0
-        self.y_now = 0
+
+        pyxel.run(self.update, self.draw)
+
+    def pause_song(self):   #set_pause(1) --> pause
+        if self.current_level == 'level1':
+            self.level1.set_pause(1)
+
+    def play_song(self):   #set_pause(0) --> lecture
+        if self.current_level == 'level1':
+            self.level1.set_pause(0)
+
+
+    def stop_allsongs(self):
+        self.gameover.stop()
+        self.level1.stop()
+            
 
     #Variables souvent utilisés
     def reset_death(self):
         if self.current_level == 'level1':
             self.obstacle_liste, self.end_level = lvl1(self.spike_y_min)
+            self.level1.play()
         elif self.current_level == 'level2':
             self.obstacle_liste, self.end_level = lvl2(self.spike_y_min)
+            self.level1.play()
 
     def deplacement_obstacles(self):
         for obstacle in self.obstacle_liste:
@@ -101,24 +131,15 @@ class Game:
         return False
 
     def QUIT_LEVEL(self):
-        if self.current_level == 'level1':
-            self.obstacle_liste, self.end_level = lvl1(self.spike_y_min)
-            
+        self.reset_death()            
 
-        elif self.current_level == 'level2':
-            self.obstacle_liste, self.end_level = lvl2(self.spike_y_min)
-            
-
-        self.level1_song = False
         self.level_initialisation = False
         #game
         self.in_level = False
         self.menu = True
         self.game_menu = 2
         self.ESC_level = False
-        self.son_game_over = False
         self.finish_level = False
-        pyxel.stop()
 
         #cube
         self.cube_y = self.cube_y_min
@@ -137,7 +158,7 @@ class Game:
 
     def show_noclip(self):
         if self.noclip:
-            pyxel.text(self.x-30,5,"NOCLIP",8)
+            pyxel.text(self.screen_x-30,5,"NOCLIP",8)
 
     def level_pourc(self):
         self.cube_x_pourc += self.speed
@@ -148,23 +169,21 @@ class Game:
 
     def is_going_down(self):
         if not self.going_down:
-            self.y_before = self.cube_y
+            self.cube_y_before = self.cube_y
             self.going_down = True
         elif self.going_down:
-            self.y_now = self.cube_y
+            self.cube_y_now = self.cube_y
             self.going_down = False
-            if self.y_before < self.y_now:
+            if self.cube_y_before < self.cube_y_now:
                 self.jump = True
 
     def restart_level(self):
         self.reset_death()
+        self.stop_allsongs()
         self.speed = self.velocity_x
         self.jump = False
         self.cube_y = self.cube_y_min
-        pyxel.playm(0,0,True)
-        self.son_game_over = False
         self.game_over = False
-        self.level1_song = False
         self.level_initialisation = False
 
     def level_init(self):
@@ -225,11 +244,8 @@ class Game:
             #Collisions
             if self.collision(obstacle) and not obstacle['type']=='orb' and self.noclip==False:
                 self.game_over = True
+                self.pause_song()
                 self.stop()
-                if not self.son_game_over:
-                    pyxel.stop()
-                    pyxel.play(0, 63)
-                    self.son_game_over = True
                 if pyxel.btnp(pyxel.KEY_R):
                     self.restart_level()
 
@@ -243,15 +259,40 @@ class Game:
             if pyxel.btnp(pyxel.KEY_R):
                 self.restart_level()
 
-    def song(self):
-        if not self.level1_song:
-            pyxel.playm(0,0,True)
-            self.level1_song = True
+    def ESC(self):
+        if self.ESC_level:
+            pyxel.mouse(True)
+            self.pause_song()
+            self.speed = 0
+            self.velocity_y = 0
+            self.jump = True
+            self.cube_rot = False
+            #comment mettre la musique en pause ?
+
+            #Quitter le niveau
+            if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < 5+16 and pyxel.mouse_x > 5 and pyxel.mouse_y < 5+16 and pyxel.mouse_y > 5 or pyxel.btnp(pyxel.KEY_ESCAPE):
+                self.QUIT_LEVEL()
+
+            #Reprendre le niveau
+            if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < self.screen_x/2+16 and pyxel.mouse_x > self.screen_x/2-16 and pyxel.mouse_y < self.screen_y/2+16 and pyxel.mouse_y > self.screen_y/2-16:
+                self.play_song()
+                self.speed = self.velocity_x
+                self.jump = self.is_jump
+                self.is_jump = False
+                pyxel.mouse(False)
+                self.ESC_level = False
+
+        if self.in_level and pyxel.btnp(pyxel.KEY_ESCAPE):
+            self.is_jump = self.jump
+            self.ESC_level = True
 
     #level update et draw
-    def niveau_update(self): #a faire: les songs
+    def niveau_update(self):
         #Level initialization
         self.level_init()
+
+        #Gestion d'obstacles
+        self.obstacles_gestion()
 
         #Obstacles:
         self.deplacement_obstacles()
@@ -259,14 +300,8 @@ class Game:
         #Pourcentage du niveau:
         self.level_pourc()
 
-        #Songs
-        self.song()
-
         #Gestion du cube
         self.cube_jump_rot()
-
-        #Gestion d'obstacles
-        self.obstacles_gestion()
 
         #endlevel
         self.is_end_level()
@@ -274,7 +309,7 @@ class Game:
     def niveau_draw(self):
         pyxel.cls(1)
         #Sol blanc
-        pyxel.rect(0, self.cube_y_min+16, self.x, self.y, 7)
+        pyxel.rect(0, self.cube_y_min+16, self.screen_x, self.screen_y, 7)
         #Cube
         if self.cube_rotation >= 0 and self.cube_rotation < 10:
             pyxel.blt(self.cube_x, self.cube_y, 0, 0, 0, 16, 16, 0)
@@ -286,7 +321,7 @@ class Game:
             pyxel.blt(self.cube_x, self.cube_y, 0, 48, 0, 16, 16, 0)
 
         for obstacle in self.obstacle_liste:
-            if obstacle['x'] < self.x:
+            if obstacle['x'] < self.screen_x:
                 if obstacle['type']=='spike' and obstacle['turned']==False:
                     pyxel.blt(obstacle['x'], obstacle['y'], 0, 16, 16, 16, 16, 0)
                 if obstacle['type']=='spike' and obstacle['turned']==True:
@@ -308,11 +343,12 @@ class Game:
             pyxel.text(55, 90, "ESC pour quitter", 7)
             #Quitter
             pyxel.blt(5, 5, 1, 48, 0, 16, 16,0)
-        pyxel.text(self.x//2-15, 5, f"{str(self.level_pourcentage)}%", 8)
+        pyxel.text(self.screen_x//2-15, 5, f"{str(self.level_pourcentage)}%", 8)
 
     def update(self):
         if self.menu:
             menu_update(self)
+            self.stop_allsongs()
 
         #noclip
         self.noclip = self.noclip_change()
@@ -322,30 +358,7 @@ class Game:
             self.niveau_update()
 
         #ESC dans le niveau
-        if self.ESC_level:
-            pyxel.mouse(True)
-
-            self.speed = 0
-            self.velocity_y = 0
-            self.jump = True
-            self.cube_rot = False
-            #comment mettre la musique en pause ?
-
-            #Quitter le niveau
-            if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < 5+16 and pyxel.mouse_x > 5 and pyxel.mouse_y < 5+16 and pyxel.mouse_y > 5 or pyxel.btnp(pyxel.KEY_ESCAPE):
-                self.QUIT_LEVEL()
-
-            #Reprendre le niveau
-            if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < self.x/2+16 and pyxel.mouse_x > self.x/2-16 and pyxel.mouse_y < self.y/2+16 and pyxel.mouse_y > self.y/2-16:
-                self.speed = self.velocity_x
-                self.jump = self.is_jump
-                self.is_jump = False
-                pyxel.mouse(False)
-                self.ESC_level = False
-
-        if self.in_level and pyxel.btnp(pyxel.KEY_ESCAPE):
-            self.is_jump = self.jump
-            self.ESC_level = True
+        self.ESC()
 
     def draw(self):
         if self.menu: #menu
@@ -356,11 +369,8 @@ class Game:
         self.show_noclip()
         if self.ESC_level:
             pyxel.blt(5, 5, 1, 48, 0, 16, 16,0) #croix (quitter)
-            pyxel.blt(self.x/2-16, self.y/2-16, 1, 0, 0, 32, 32,0) #bouton reprendre
+            pyxel.blt(self.screen_x/2-16, self.screen_y/2-16, 1, 0, 0, 32, 32,0) #bouton reprendre
+    
 
 
-game = Game()
-pyxel.init(game.x, game.y, quit_key=pyxel.KEY_P)
-pyxel.load("geometrydash.pyxres")
-pyxel.mouse(True)
-pyxel.run(game.update, game.draw)
+Game()

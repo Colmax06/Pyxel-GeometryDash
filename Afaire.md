@@ -1,5 +1,6 @@
 # 📝 À faire:
 - Continuer les niveaux
-- Régler la musique: nous allons créer un .mp3 et jouer cette musique (ou supprimer la musique nous allons voir).
+- Régler la musique: mettre les musiques (dans un autre folder)
 - Modifier encore un peu la gravité du joueur
 - Continuer l'optimisation du code
+- Faire un dictionnaire pour les variables de bases (en regroupement)

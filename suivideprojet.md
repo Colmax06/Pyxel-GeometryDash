@@ -83,5 +83,10 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 ### ✅ Ajouts / Changements:
 - Ajouts de la class Game (pour enlever les global + meilleurs organisation + moins d'erreurs)
 - Optimisation du code (comme des variables qui ne servent à rien)
+- Enlever la musique pyxelstudio et la remplacer par une music.mp3 grâce à la lib vlc
+### ⚠️ Problèmes Rencontrés:
+- Mise en pause, arrêt, lancer la musique (c'est une nouvelle lib que je n'avais jamais utlisé)
 ### 📝 À faire:
 - Continuer l'optimisation du code
+- Faire un dictionnaire pour les variables de bases (en regroupement)
+- Mettre les musiques dans un autre dossier
