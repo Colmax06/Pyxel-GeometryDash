@@ -12,7 +12,21 @@ class Game:
         pyxel.mouse(True)
         pyxel.load("geometrydash.pyxres")
 
-
+'''
+        self.cube = {
+            cube_x = 40
+            cube_x_pourc = 0
+            cube_y_min = 150
+            cube_y = self.cube_y_min
+            spike_y_min = self.cube_y_min
+            cube_rotation = 0
+            cube_rot = False
+            #cube falling
+            going_down = 0
+            cube_y_before = 0
+            cube_y_now = 0
+        }
+'''
         #cube
         self.cube_x = 40
         self.cube_x_pourc = 0
@@ -25,7 +39,18 @@ class Game:
         self.going_down = 0
         self.cube_y_before = 0
         self.cube_y_now = 0
-
+'''
+        self.physics = {
+            gravity = 1.45
+            jump_strength = -9.5
+            velocity_x = 4.4
+            speed = self.velocity_x
+            velocity_y = 0
+            jump = False
+            is_jump = False
+            game_over = False            
+        }
+'''
         #Phisique du jeu
         self.gravity = 1.45
         self.jump_strength = -9.5
