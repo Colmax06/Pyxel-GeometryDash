@@ -1,6 +1,4 @@
 import pyxel
-import vlc
-from pathlib import Path
 from obstacleslvls import *
 from menu import *
 
@@ -14,15 +12,6 @@ class Game:
         pyxel.mouse(True)
         pyxel.load("geometrydash.pyxres")
 
-        #vlc init
-        base_dir = Path(__file__).resolve().parent
-        base_dir = f"{base_dir}\\musics"
-        songs_dir = {
-            'gameover': f"{base_dir}\\gameover.mp3",
-            'level1': f"{base_dir}\\level1.mp3",
-        }
-        self.gameover = vlc.MediaPlayer(str(songs_dir['gameover']))
-        self.level1 = vlc.MediaPlayer(str(songs_dir['level1']))
 
         #cube
         self.cube_x = 40
@@ -72,28 +61,25 @@ class Game:
 
         pyxel.run(self.update, self.draw)
 
-    def pause_song(self):   #set_pause(1) --> pause
-        if self.current_level == 'level1':
-            self.level1.set_pause(1)
+    def pause_song(self):
+        pass
 
-    def play_song(self):   #set_pause(0) --> lecture
-        if self.current_level == 'level1':
-            self.level1.set_pause(0)
+    def play_song(self):
+        pass
 
 
     def stop_allsongs(self):
-        self.gameover.stop()
-        self.level1.stop()
+        pass
 
 
     #Variables souvent utilisés
     def reset_death(self):
         if self.current_level == 'level1':
             self.obstacle_liste, self.end_level = lvl1(self.spike_y_min)
-            self.level1.play()
+            #Jouer la music du niveau 1
         elif self.current_level == 'level2':
             self.obstacle_liste, self.end_level = lvl2(self.spike_y_min)
-            self.level1.play()
+            #Jouer la music du niveau 2
 
     def deplacement_obstacles(self):
         for obstacle in self.obstacle_liste:
@@ -180,7 +166,7 @@ class Game:
 
     def restart_level(self):
         self.reset_death()
-        self.stop_allsongs()
+        #arrêter toutes les musics
         self.speed = self.velocity_x
         self.jump = False
         self.cube_y = self.cube_y_min
@@ -245,7 +231,8 @@ class Game:
             #Collisions
             if self.collision(obstacle) and not obstacle['type']=='orb' and self.noclip==False:
                 self.game_over = True
-                self.pause_song()
+                #pause music
+                #jouer music de mort
                 self.stop()
                 if pyxel.btnp(pyxel.KEY_R):
                     self.restart_level()
@@ -263,7 +250,7 @@ class Game:
     def ESC(self):
         if self.ESC_level:
             pyxel.mouse(True)
-            self.pause_song()
+            #pause music
             self.speed = 0
             self.velocity_y = 0
             self.jump = True
@@ -276,7 +263,7 @@ class Game:
 
             #Reprendre le niveau
             if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < self.screen_x/2+16 and pyxel.mouse_x > self.screen_x/2-16 and pyxel.mouse_y < self.screen_y/2+16 and pyxel.mouse_y > self.screen_y/2-16:
-                self.play_song()
+                #reprendre la music
                 self.speed = self.velocity_x
                 self.jump = self.is_jump
                 self.is_jump = False
@@ -349,7 +336,7 @@ class Game:
     def update(self):
         if self.menu:
             menu_update(self)
-            self.stop_allsongs()
+            #arrêter toutes les musics
 
         #noclip
         self.noclip = self.noclip_change()
