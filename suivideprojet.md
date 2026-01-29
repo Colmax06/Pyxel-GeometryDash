@@ -90,3 +90,12 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 - Continuer l'optimisation du code
 - Faire un dictionnaire pour les variables de bases (en regroupement)
 - Mettre les musiques dans un autre dossier
+
+---
+<br></br>
+
+## 📅 <span style="color:orange">29/01/2026:</span>
+### ✅ Ajouts / Changements:
+- Plus de vlc
+### 📝 À faire:
+- Mettre la music de PyxelStudio
