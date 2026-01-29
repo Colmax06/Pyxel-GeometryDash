@@ -13,9 +13,10 @@ class Game:
         pyxel.init(self.screen_x, self.screen_y, quit_key=pyxel.KEY_P, title="GeometryDash")
         pyxel.mouse(True)
         pyxel.load("geometrydash.pyxres")
-        
+
         #vlc init
         base_dir = Path(__file__).resolve().parent
+        base_dir = f"{base_dir}\\musics"
         songs_dir = {
             'gameover': f"{base_dir}\\gameover.mp3",
             'level1': f"{base_dir}\\level1.mp3",
@@ -56,8 +57,8 @@ class Game:
         self.current_level = None
         self.chosen_level = 1
         self.chosen_level_max = 2
-        
-        
+
+
 
         #Obstacles
         self.level_pourcentage = 0
@@ -83,7 +84,7 @@ class Game:
     def stop_allsongs(self):
         self.gameover.stop()
         self.level1.stop()
-            
+
 
     #Variables souvent utilisés
     def reset_death(self):
@@ -131,7 +132,7 @@ class Game:
         return False
 
     def QUIT_LEVEL(self):
-        self.reset_death()            
+        self.reset_death()
 
         self.level_initialisation = False
         #game
@@ -204,7 +205,7 @@ class Game:
         self.cube_y += self.velocity_y
         self.velocity_y += self.gravity
         self.is_going_down()
-        self.end_level -= self.speed 
+        self.end_level -= self.speed
 
         if self.cube_rot:
             self.cube_rotation += 4
@@ -213,7 +214,7 @@ class Game:
         if self.jump==False:
             self.cube_rotation = 0
             self.cube_rot = False
-        
+
         #Cube va au minimum au sol
         if self.cube_y >= self.cube_y_min:
             self.cube_y = self.cube_y_min
@@ -232,7 +233,7 @@ class Game:
                     self.cube_y = obstacle['y'] - 16
                     self.velocity_y = 0
                     self.jump = False
-            
+
             #Utilisation de l'orb
             if obstacle['type']=='orb':
                 if obstacle['used']==False and self.collision(obstacle) and pyxel.btn(pyxel.KEY_SPACE): #A CONTINUER
@@ -370,7 +371,7 @@ class Game:
         if self.ESC_level:
             pyxel.blt(5, 5, 1, 48, 0, 16, 16,0) #croix (quitter)
             pyxel.blt(self.screen_x/2-16, self.screen_y/2-16, 1, 0, 0, 32, 32,0) #bouton reprendre
-    
+
 
 
 Game()
