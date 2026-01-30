@@ -111,3 +111,5 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 - La musique reprennait mais s'arrêter au bout d'un moment
 - Proplème de récupération là où en était la musique
 - Je voulais récupérer les données du tuple mais j'avais une erreur qui me disait que le tuple = None donc je ne pouvais pas récupérer la position de la musique. C'est juste que si aucune musique ne joue, play_pos(ch) renvoie None
+### 📝 À faire:
+- Fonction qui reset toutes les variables qu'il faut après chaque reset et chaque quit de niveau (pour éviter le désordre des variables)

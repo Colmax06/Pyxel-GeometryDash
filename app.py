@@ -78,6 +78,17 @@ class Game:
         pyxel.run(self.update, self.draw)
 
 
+    def default_var(self):
+        self.menu_song_var = False
+        self.death_sound_var = False
+        self.level1_song_var = False
+        self.level2_song_var = False
+
+        self.music_position = None
+        self.sound = 0
+        self.sec = 0
+        self.sec_list = [0] * 64
+
     def resume_song(self):
         self.sec = 0
         for seconds in self.sec_list:
@@ -220,6 +231,7 @@ class Game:
         if not self.level_initialisation:
             pyxel.mouse(False)
             self.reset_obstacles()
+            self.restart_level()
             self.play_song()
             self.sec_list = [0] * 64
             self.end_level_pourc = self.end_level
