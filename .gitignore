@@ -5,6 +5,7 @@ __pycache__/
 *.so
 .Python
 test.py
+test2.py
 
 # Environnements virtuels
 venv/
