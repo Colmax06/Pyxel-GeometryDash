@@ -63,19 +63,36 @@ class Game:
         self.end_level = 0
         self.end_level_pourc = 0
 
+
+        #Songs
+        self.menu_song_var = False
+        self.death_sound_var = False
+        self.level1_song_var = False
+        self.level2_song_var = False
+
+
         pyxel.run(self.update, self.draw)
 
     def pause_song(self):
         pass
 
-    def play_song(self):
+    def resume_song(self):
         pass
+
+    def play_song(self):
+        if self.current_level == 'level1':
+            pyxel.playm(1)
+        if self.current_level == 'level2':
+            pyxel.playm(2)
 
     def stop_allsongs(self):
-        pass
+        pyxel.stop()
 
+    def death_sound(self):
+        pyxel.play(0, 63)
 
     def reset_death(self):
+        pyxel.stop()
         if self.current_level == 'level1':
             self.obstacle_liste, self.end_level = lvl1(self.spike_y_min)
             #Jouer la music du niveau 1
@@ -126,11 +143,12 @@ class Game:
 
     def QUIT_LEVEL(self):
         self.reset_death()
-
+        self.stop_allsongs()
         self.level_initialisation = False
         #game
         self.in_level = False
         self.menu = True
+        self.menu_song_var = False
         self.game_menu = 2
         self.ESC_level = False
         self.finish_level = False
@@ -169,17 +187,20 @@ class Game:
 
     def restart_level(self):
         self.reset_death()
-        #arrêter toutes les musics
+        self.stop_allsongs()
+        self.play_song()
         self.speed = self.velocity_x
         self.jump = False
         self.cube_y = self.cube_y_min
         self.game_over = False
         self.level_initialisation = False
+        self.finish_level = False
 
     def level_init(self):
         if not self.level_initialisation:
             pyxel.mouse(False)
             self.reset_death()
+            self.play_song()
             self.end_level_pourc = self.end_level
             self.cube_x_pourc = 0
             self.level_pourcentage = 0
@@ -320,7 +341,6 @@ class Game:
 
         #endlevel
         self.is_end_level()
-
     def niveau_draw(self):
         pyxel.cls(1)
         #Sol blanc
@@ -343,6 +363,8 @@ class Game:
             pyxel.blt(5, 5, 1, 48, 0, 16, 16,0)
         pyxel.text(self.screen_x//2-15, 5, f"{str(self.level_pourcentage)}%", 8)
 
+
+    #Gamew
     def update(self):
         if self.menu:
             menu_update(self)
@@ -357,7 +379,6 @@ class Game:
 
         #ESC dans le niveau
         self.ESC()
-
     def draw(self):
         if self.menu: #menu
             menu_draw(self)

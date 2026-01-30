@@ -1,6 +1,8 @@
 import pyxel
-
 def menu_update(game):
+    if not game.menu_song_var:
+        pyxel.playm(0, 0, True) #menu song
+        game.menu_song_var = True
     pyxel.mouse(True)
     if game.game_menu == 1: #menu principale
         #Quitter
