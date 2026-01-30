@@ -67,8 +67,8 @@ class Game:
         #Songs
         self.menu_song_var = False
         self.death_sound_var = False
-        self.level1_song_var = False
-        self.level2_song_var = False
+        
+        
 
         self.music_position = None
         self.sound = 0
@@ -79,16 +79,30 @@ class Game:
 
 
     def default_var(self):
+        #music
         self.menu_song_var = False
         self.death_sound_var = False
-        self.level1_song_var = False
-        self.level2_song_var = False
-
         self.music_position = None
         self.sound = 0
         self.sec = 0
         self.sec_list = [0] * 64
 
+        #cube
+        self.cube_y = self.cube_y_min
+        self.velocity_y = 0
+        self.speed = self.velocity_x
+        self.jump = False
+        self.game_over = False
+        self.finish_level = False
+
+        #game
+        self.level_initialisation = False
+        self.ESC_level = False
+        #Pourcentage
+        self.end_level_pourc = self.end_level
+        self.cube_x_pourc = 0
+
+#Songs
     def resume_song(self):
         self.sec = 0
         for seconds in self.sec_list:
@@ -97,53 +111,78 @@ class Game:
             pyxel.playm(1, sec=self.sec)
         if self.current_level == 'level2':
             pyxel.playm(2, sec=self.sec)
-
     def play_song(self):
         if self.current_level == 'level1':
             pyxel.playm(1)
         if self.current_level == 'level2':
             pyxel.playm(2)
-
     def stop_allsongs(self):
         pyxel.stop()
-
     def get_song_pos(self):
         self.music_position = pyxel.play_pos(0)
         if self.music_position is not None:
             self.sound, self.sec = self.music_position
             self.sec_list[self.sound] = self.sec
-
     def get_song_sec(self):
         self.sec_temp += self.sec
-
     def death_sound(self):
         if not self.death_sound_var:
+            self.stop_allsongs()
             pyxel.play(0, 63)
             self.death_sound_var = True
 
+
+#level
     def reset_obstacles(self):
-        
         if self.current_level == 'level1':
             self.obstacle_liste, self.end_level = lvl1(self.spike_y_min)
             #Jouer la music du niveau 1
         elif self.current_level == 'level2':
             self.obstacle_liste, self.end_level = lvl2(self.spike_y_min)
             #Jouer la music du niveau 2
-
+    def level_init(self):
+        if not self.level_initialisation:
+            pyxel.mouse(False)
+            self.reset_obstacles()
+            self.default_var()
+            self.stop_allsongs()
+            self.play_song()
+            self.level_initialisation = True
     def deplacement_obstacles(self):
         for obstacle in self.obstacle_liste:
             obstacle['x'] -= self.speed
         for obstacle in self.obstacle_liste:
             if obstacle['x'] < -16:
                 self.obstacle_liste.remove(obstacle)
+    def obstacles_gestion(self):
+        for obstacle in self.obstacle_liste:
+            #Rester sur le bloc
+            if obstacle['type']=='block' or obstacle['type']=='mur':
+                cube_left = self.cube_x
+                cube_right = self.cube_x + 16
+                obs_left = obstacle['x']
+                obs_right = obstacle['x'] + 16
+                if (cube_right > obs_left and cube_left < obs_right and self.cube_y + 16 <= obstacle['y'] and self.cube_y + 16 + self.velocity_y >= obstacle['y']):
+                    self.cube_y = obstacle['y'] - 16
+                    self.velocity_y = 0
+                    self.jump = False
 
-    def stop(self):
-        self.speed = 0
-        self.velocity_y = 0
-        self.jump = True
-        self.cube_rot = False
+            #Utilisation de l'orb
+            if obstacle['type']=='orb':
+                if obstacle['used']==False and self.collision(obstacle) and pyxel.btn(pyxel.KEY_SPACE): #A CONTINUER
+                    self.jump = True
+                    self.velocity_y = self.jump_strength
+                    self.cube_rot = True
+                    obstacle['used']=True
 
-    def collision(self, obstacle):
+            #Collisions
+            if self.collision(obstacle) and not obstacle['type']=='orb' and self.noclip==False:
+                self.game_over = True
+                self.death_sound()
+                self.stop()
+                if pyxel.btnp(pyxel.KEY_R):
+                    self.level_initialisation = False
+    def collision(self, obstacle): #Utilisé dans obstacles_gestion()
 
         #Si l'obstacle est hors de l'écran:
         if obstacle['x'] > self.screen_x:
@@ -170,75 +209,6 @@ class Game:
         if (cube_droit > obs_gauche and cube_gauche < obs_droit and cube_bas > obs_haut and cube_haut < obs_bas):
             return True
         return False
-
-    def QUIT_LEVEL(self):
-        self.reset_obstacles()
-        self.stop_allsongs()
-        self.level_initialisation = False
-        #game
-        self.in_level = False
-        self.menu = True
-        self.menu_song_var = False
-        self.game_menu = 2
-        self.ESC_level = False
-        self.finish_level = False
-
-        #cube
-        self.cube_y = self.cube_y_min
-        self.velocity_y = 0
-        self.speed = self.velocity_x
-        self.jump = False
-        self.game_over = False
-
-    def noclip_change(self):
-        if pyxel.btnp(pyxel.KEY_N):
-            if self.noclip:
-                return False
-            return True
-        else:
-            return self.noclip
-
-    def level_pourc(self):
-        self.cube_x_pourc += self.speed
-        self.level_pourcentage = int(self.cube_x_pourc/(self.end_level_pourc-self.cube_x)*10000)
-        self.level_pourcentage = self.level_pourcentage/100
-        if self.level_pourcentage >= 100:
-            self.level_pourcentage = 100
-
-    def is_going_down(self):
-        if not self.going_down:
-            self.cube_y_before = self.cube_y
-            self.going_down = True
-        elif self.going_down:
-            self.cube_y_now = self.cube_y
-            self.going_down = False
-            if self.cube_y_before < self.cube_y_now:
-                self.jump = True
-
-    def restart_level(self):
-        self.reset_obstacles()
-        self.stop_allsongs()
-        self.play_song()
-        self.sec_list = [0] * 64
-        self.speed = self.velocity_x
-        self.jump = False
-        self.cube_y = self.cube_y_min
-        self.game_over = False
-        self.level_initialisation = False
-        self.finish_level = False
-
-    def level_init(self):
-        if not self.level_initialisation:
-            pyxel.mouse(False)
-            self.reset_obstacles()
-            self.restart_level()
-            self.play_song()
-            self.sec_list = [0] * 64
-            self.end_level_pourc = self.end_level
-            self.cube_x_pourc = 0
-            self.level_pourcentage = 0
-            self.level_initialisation = True
-
     def cube_jump_rot(self):
         #Saut du cube
         if pyxel.btn(pyxel.KEY_SPACE) and self.jump==False:
@@ -263,37 +233,21 @@ class Game:
             self.cube_y = self.cube_y_min
             self.jump = False
             self.velocity_y = 0
-
-    def obstacles_gestion(self):
-        for obstacle in self.obstacle_liste:
-            #Rester sur le bloc
-            if obstacle['type']=='block' or obstacle['type']=='mur':
-                cube_left = self.cube_x
-                cube_right = self.cube_x + 16
-                obs_left = obstacle['x']
-                obs_right = obstacle['x'] + 16
-                if (cube_right > obs_left and cube_left < obs_right and self.cube_y + 16 <= obstacle['y'] and self.cube_y + 16 + self.velocity_y >= obstacle['y']):
-                    self.cube_y = obstacle['y'] - 16
-                    self.velocity_y = 0
-                    self.jump = False
-
-            #Utilisation de l'orb
-            if obstacle['type']=='orb':
-                if obstacle['used']==False and self.collision(obstacle) and pyxel.btn(pyxel.KEY_SPACE): #A CONTINUER
-                    self.jump = True
-                    self.velocity_y = self.jump_strength
-                    self.cube_rot = True
-                    obstacle['used']=True
-
-            #Collisions
-            if self.collision(obstacle) and not obstacle['type']=='orb' and self.noclip==False:
-                self.game_over = True
-                self.stop_allsongs()
-                self.death_sound()
-                self.stop()
-                if pyxel.btnp(pyxel.KEY_R):
-                    self.restart_level()
-
+    def is_going_down(self):
+        if not self.going_down:
+            self.cube_y_before = self.cube_y
+            self.going_down = True
+        elif self.going_down:
+            self.cube_y_now = self.cube_y
+            self.going_down = False
+            if self.cube_y_before < self.cube_y_now:
+                self.jump = True
+    def level_pourc(self):
+        self.cube_x_pourc += self.speed
+        self.level_pourcentage = int(self.cube_x_pourc/(self.end_level_pourc-self.cube_x)*10000)
+        self.level_pourcentage = self.level_pourcentage/100
+        if self.level_pourcentage >= 100:
+            self.level_pourcentage = 100
     def is_end_level(self):
         if self.cube_x>=self.end_level:
             self.finish_level = True
@@ -302,8 +256,21 @@ class Game:
             if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < 5+16 and pyxel.mouse_x > 5 and pyxel.mouse_y < 5+16 and pyxel.mouse_y > 5 or pyxel.btnp(pyxel.KEY_ESCAPE):
                 self.QUIT_LEVEL()
             if pyxel.btnp(pyxel.KEY_R):
-                self.restart_level()
-
+                self.level_initialisation = False
+    def stop(self):
+        self.speed = 0
+        self.velocity_y = 0
+        self.jump = True
+        self.cube_rot = False
+    def QUIT_LEVEL(self):
+        self.reset_obstacles()
+        self.stop_allsongs()
+        self.default_var()
+        #game
+        self.in_level = False
+        self.menu = True
+        self.menu_song_var = False
+        self.game_menu = 2
     def ESC(self):
         if self.ESC_level:
             pyxel.mouse(True)
@@ -331,29 +298,16 @@ class Game:
             self.is_jump = self.jump
             self.ESC_level = True
 
-    def draw_cube(self):
-        if self.cube_rotation >= 0 and self.cube_rotation < 10:
-            pyxel.blt(self.cube_x, self.cube_y, 0, 0, 0, 16, 16, 0)
-        elif self.cube_rotation >= 10 and self.cube_rotation < 40:
-            pyxel.blt(self.cube_x, self.cube_y, 0, 16, 0, 16, 16, 0)
-        elif self.cube_rotation >= 40 and self.cube_rotation < 50:
-            pyxel.blt(self.cube_x, self.cube_y, 0, 32, 0, 16, 16, 0)
-        elif self.cube_rotation >= 50 and self.cube_rotation <= 80:
-            pyxel.blt(self.cube_x, self.cube_y, 0, 48, 0, 16, 16, 0)
 
-    def draw_obstacle(self):
-        for obstacle in self.obstacle_liste:
-            if obstacle['x'] < self.screen_x:
-                if obstacle['type']=='spike' and obstacle['turned']==False:
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 16, 16, 16, 16, 0)
-                if obstacle['type']=='spike' and obstacle['turned']==True:
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 16, 32, 16, 16, 0)
-                if obstacle['type']=='block':
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 32, 16, 16, 16)
-                if obstacle['type']=='mur':
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 0, 16, 16, 16)
-                if obstacle['type']=='orb':
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 48, 16, 16, 16, 0)
+#Cheats
+    def noclip_change(self):
+        if pyxel.btnp(pyxel.KEY_N):
+            if self.noclip:
+                return False
+            return True
+        else:
+            return self.noclip
+
 
     #level update et draw
     def niveau_update(self):
@@ -381,11 +335,30 @@ class Game:
         pyxel.cls(1)
         #Sol blanc
         pyxel.rect(0, self.cube_y_min+16, self.screen_x, self.screen_y, 7)
+
         #Cube
-        self.draw_cube()
+        if self.cube_rotation >= 0 and self.cube_rotation < 10:
+            pyxel.blt(self.cube_x, self.cube_y, 0, 0, 0, 16, 16, 0)
+        elif self.cube_rotation >= 10 and self.cube_rotation < 40:
+            pyxel.blt(self.cube_x, self.cube_y, 0, 16, 0, 16, 16, 0)
+        elif self.cube_rotation >= 40 and self.cube_rotation < 50:
+            pyxel.blt(self.cube_x, self.cube_y, 0, 32, 0, 16, 16, 0)
+        elif self.cube_rotation >= 50 and self.cube_rotation <= 80:
+            pyxel.blt(self.cube_x, self.cube_y, 0, 48, 0, 16, 16, 0)
 
         #Obstacles
-        self.draw_obstacle()
+        for obstacle in self.obstacle_liste:
+            if obstacle['x'] < self.screen_x:
+                if obstacle['type']=='spike' and obstacle['turned']==False:
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 16, 16, 16, 16, 0)
+                if obstacle['type']=='spike' and obstacle['turned']==True:
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 16, 32, 16, 16, 0)
+                if obstacle['type']=='block':
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 32, 16, 16, 16)
+                if obstacle['type']=='mur':
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 0, 16, 16, 16)
+                if obstacle['type']=='orb':
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 48, 16, 16, 16, 0)
 
         if self.game_over:
             pyxel.text(70, 70, "GAME OVER", 8)

@@ -106,7 +106,7 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 ## 📅 <span style="color:orange">30/01/2026:</span>
 ### ✅ Ajouts / Changements:
 - Musique de PyxelStudio ajouté, avec aussi le fait que lorsqu'on mets le niveau en pause et qu'on reprend, la musique reprend aussi --> j'ai donc du stocker le moment où en est la musique lorsqu'elle est mise en pause
-- Un petit peu d'optimisation
+- Un petit peu d'optimisation + organisation
 ### ⚠️ Problèmes Rencontrés:
 - La musique reprennait mais s'arrêter au bout d'un moment
 - Proplème de récupération là où en était la musique
