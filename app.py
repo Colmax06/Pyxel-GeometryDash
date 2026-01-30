@@ -70,14 +70,22 @@ class Game:
         self.level1_song_var = False
         self.level2_song_var = False
 
+        self.music_position = None
+        self.sound = 0
+        self.sec = 0
+        self.sec_list = [0] * 64
 
         pyxel.run(self.update, self.draw)
 
-    def pause_song(self):
-        pass
 
     def resume_song(self):
-        pass
+        self.sec = 0
+        for seconds in self.sec_list:
+            self.sec += seconds
+        if self.current_level == 'level1':
+            pyxel.playm(1, sec=self.sec)
+        if self.current_level == 'level2':
+            pyxel.playm(2, sec=self.sec)
 
     def play_song(self):
         if self.current_level == 'level1':
@@ -88,11 +96,22 @@ class Game:
     def stop_allsongs(self):
         pyxel.stop()
 
-    def death_sound(self):
-        pyxel.play(0, 63)
+    def get_song_pos(self):
+        self.music_position = pyxel.play_pos(0)
+        if self.music_position is not None:
+            self.sound, self.sec = self.music_position
+            self.sec_list[self.sound] = self.sec
 
-    def reset_death(self):
-        pyxel.stop()
+    def get_song_sec(self):
+        self.sec_temp += self.sec
+
+    def death_sound(self):
+        if not self.death_sound_var:
+            pyxel.play(0, 63)
+            self.death_sound_var = True
+
+    def reset_obstacles(self):
+        
         if self.current_level == 'level1':
             self.obstacle_liste, self.end_level = lvl1(self.spike_y_min)
             #Jouer la music du niveau 1
@@ -142,7 +161,7 @@ class Game:
         return False
 
     def QUIT_LEVEL(self):
-        self.reset_death()
+        self.reset_obstacles()
         self.stop_allsongs()
         self.level_initialisation = False
         #game
@@ -186,9 +205,10 @@ class Game:
                 self.jump = True
 
     def restart_level(self):
-        self.reset_death()
+        self.reset_obstacles()
         self.stop_allsongs()
         self.play_song()
+        self.sec_list = [0] * 64
         self.speed = self.velocity_x
         self.jump = False
         self.cube_y = self.cube_y_min
@@ -199,8 +219,9 @@ class Game:
     def level_init(self):
         if not self.level_initialisation:
             pyxel.mouse(False)
-            self.reset_death()
+            self.reset_obstacles()
             self.play_song()
+            self.sec_list = [0] * 64
             self.end_level_pourc = self.end_level
             self.cube_x_pourc = 0
             self.level_pourcentage = 0
@@ -255,8 +276,8 @@ class Game:
             #Collisions
             if self.collision(obstacle) and not obstacle['type']=='orb' and self.noclip==False:
                 self.game_over = True
-                #pause music
-                #jouer music de mort
+                self.stop_allsongs()
+                self.death_sound()
                 self.stop()
                 if pyxel.btnp(pyxel.KEY_R):
                     self.restart_level()
@@ -274,7 +295,7 @@ class Game:
     def ESC(self):
         if self.ESC_level:
             pyxel.mouse(True)
-            #pause music
+            self.stop_allsongs()
             self.speed = 0
             self.velocity_y = 0
             self.jump = True
@@ -287,7 +308,7 @@ class Game:
 
             #Reprendre le niveau
             if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < self.screen_x/2+16 and pyxel.mouse_x > self.screen_x/2-16 and pyxel.mouse_y < self.screen_y/2+16 and pyxel.mouse_y > self.screen_y/2-16:
-                #reprendre la music
+                self.resume_song()
                 self.speed = self.velocity_x
                 self.jump = self.is_jump
                 self.is_jump = False
@@ -326,6 +347,9 @@ class Game:
     def niveau_update(self):
         #Level initialization
         self.level_init()
+
+        #Get song position
+        self.get_song_pos()
 
         #Gestion d'obstacles
         self.obstacles_gestion()
@@ -366,6 +390,7 @@ class Game:
 
     #Gamew
     def update(self):
+        #Menu
         if self.menu:
             menu_update(self)
             #arrêter toutes les musics
@@ -379,6 +404,7 @@ class Game:
 
         #ESC dans le niveau
         self.ESC()
+
     def draw(self):
         if self.menu: #menu
             menu_draw(self)

@@ -99,3 +99,15 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 - Plus de vlc
 ### 📝 À faire:
 - Mettre la music de PyxelStudio
+
+---
+<br></br>
+
+## 📅 <span style="color:orange">30/01/2026:</span>
+### ✅ Ajouts / Changements:
+- Musique de PyxelStudio ajouté, avec aussi le fait que lorsqu'on mets le niveau en pause et qu'on reprend, la musique reprend aussi --> j'ai donc du stocker le moment où en est la musique lorsqu'elle est mise en pause
+- Un petit peu d'optimisation
+### ⚠️ Problèmes Rencontrés:
+- La musique reprennait mais s'arrêter au bout d'un moment
+- Proplème de récupération là où en était la musique
+- Je voulais récupérer les données du tuple mais j'avais une erreur qui me disait que le tuple = None donc je ne pouvais pas récupérer la position de la musique. C'est juste que si aucune musique ne joue, play_pos(ch) renvoie None
