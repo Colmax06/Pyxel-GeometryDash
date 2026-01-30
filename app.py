@@ -365,9 +365,9 @@ class Game:
             pyxel.text(55, 80, "R pour recommencer", 7)
 
         if self.finish_level:
-            pyxel.text(70, 70, "LEVEL FINISHED", 8)
-            pyxel.text(55, 80, "R pour recommencer", 7)
-            pyxel.text(55, 90, "ESC pour quitter", 7)
+            pyxel.blt(self.screen_x//2-40, self.screen_y//2-20, 2, 0, 0, 64, 32 , 0) #Level complete
+            pyxel.blt(170, 115, 1, 64, 0, 16, 16, 0) #Recommencer
+            pyxel.blt(100, 115, 1, 48, 0, 16, 16 , 0)   #Quitter
             #Quitter
             pyxel.blt(5, 5, 1, 48, 0, 16, 16,0)
         pyxel.text(self.screen_x//2-15, 5, f"{str(self.level_pourcentage)}%", 8)
