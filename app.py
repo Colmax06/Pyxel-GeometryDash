@@ -71,12 +71,10 @@ class Game:
     def play_song(self):
         pass
 
-
     def stop_allsongs(self):
         pass
 
 
-    #Variables souvent utilisés
     def reset_death(self):
         if self.current_level == 'level1':
             self.obstacle_liste, self.end_level = lvl1(self.spike_y_min)
@@ -151,10 +149,6 @@ class Game:
             return True
         else:
             return self.noclip
-
-    def show_noclip(self):
-        if self.noclip:
-            pyxel.text(self.screen_x-30,5,"NOCLIP",8)
 
     def level_pourc(self):
         self.cube_x_pourc += self.speed
@@ -370,7 +364,12 @@ class Game:
 
         if self.in_level: #dans le niveau
             self.niveau_draw() #chaque level dessine la même chose
-        self.show_noclip()
+
+        #Afficher noclip
+        if self.noclip:
+            pyxel.text(self.screen_x-30,5,"NOCLIP",8)
+
+        #ESC menu
         if self.ESC_level:
             pyxel.blt(5, 5, 1, 48, 0, 16, 16,0) #croix (quitter)
             pyxel.blt(self.screen_x/2-16, self.screen_y/2-16, 1, 0, 0, 32, 32,0) #bouton reprendre
