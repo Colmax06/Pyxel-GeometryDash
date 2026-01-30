@@ -12,21 +12,9 @@ class Game:
         pyxel.mouse(True)
         pyxel.load("geometrydash.pyxres")
 
-'''
-        self.cube = {
-            cube_x = 40
-            cube_x_pourc = 0
-            cube_y_min = 150
-            cube_y = self.cube_y_min
-            spike_y_min = self.cube_y_min
-            cube_rotation = 0
-            cube_rot = False
-            #cube falling
-            going_down = 0
-            cube_y_before = 0
-            cube_y_now = 0
-        }
-'''
+        
+
+
         #cube
         self.cube_x = 40
         self.cube_x_pourc = 0
@@ -39,18 +27,9 @@ class Game:
         self.going_down = 0
         self.cube_y_before = 0
         self.cube_y_now = 0
-'''
-        self.physics = {
-            gravity = 1.45
-            jump_strength = -9.5
-            velocity_x = 4.4
-            speed = self.velocity_x
-            velocity_y = 0
-            jump = False
-            is_jump = False
-            game_over = False            
-        }
-'''
+
+
+
         #Phisique du jeu
         self.gravity = 1.45
         self.jump_strength = -9.5
@@ -61,7 +40,10 @@ class Game:
         self.is_jump = False
         self.game_over = False
 
+
+        #Cheats
         self.noclip = False
+
 
         #Game
         self.menu = True
@@ -73,7 +55,6 @@ class Game:
         self.chosen_level_max = 2
 
 
-
         #Obstacles
         self.level_pourcentage = 0
         self.obstacle_liste = []
@@ -81,8 +62,6 @@ class Game:
         self.finish_level = False
         self.end_level = 0
         self.end_level_pourc = 0
-
-
 
         pyxel.run(self.update, self.draw)
 
@@ -120,6 +99,11 @@ class Game:
         self.cube_rot = False
 
     def collision(self, obstacle):
+
+        #Si l'obstacle est hors de l'écran:
+        if obstacle['x'] > self.screen_x:
+            return False
+
         cube_gauche = self.cube_x
         cube_droit = self.cube_x+16
         cube_haut = self.cube_y
@@ -299,6 +283,30 @@ class Game:
             self.is_jump = self.jump
             self.ESC_level = True
 
+    def draw_cube(self):
+        if self.cube_rotation >= 0 and self.cube_rotation < 10:
+            pyxel.blt(self.cube_x, self.cube_y, 0, 0, 0, 16, 16, 0)
+        elif self.cube_rotation >= 10 and self.cube_rotation < 40:
+            pyxel.blt(self.cube_x, self.cube_y, 0, 16, 0, 16, 16, 0)
+        elif self.cube_rotation >= 40 and self.cube_rotation < 50:
+            pyxel.blt(self.cube_x, self.cube_y, 0, 32, 0, 16, 16, 0)
+        elif self.cube_rotation >= 50 and self.cube_rotation <= 80:
+            pyxel.blt(self.cube_x, self.cube_y, 0, 48, 0, 16, 16, 0)
+
+    def draw_obstacle(self):
+        for obstacle in self.obstacle_liste:
+            if obstacle['x'] < self.screen_x:
+                if obstacle['type']=='spike' and obstacle['turned']==False:
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 16, 16, 16, 16, 0)
+                if obstacle['type']=='spike' and obstacle['turned']==True:
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 16, 32, 16, 16, 0)
+                if obstacle['type']=='block':
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 32, 16, 16, 16)
+                if obstacle['type']=='mur':
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 0, 16, 16, 16)
+                if obstacle['type']=='orb':
+                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 48, 16, 16, 16, 0)
+
     #level update et draw
     def niveau_update(self):
         #Level initialization
@@ -324,27 +332,10 @@ class Game:
         #Sol blanc
         pyxel.rect(0, self.cube_y_min+16, self.screen_x, self.screen_y, 7)
         #Cube
-        if self.cube_rotation >= 0 and self.cube_rotation < 10:
-            pyxel.blt(self.cube_x, self.cube_y, 0, 0, 0, 16, 16, 0)
-        elif self.cube_rotation >= 10 and self.cube_rotation < 40:
-            pyxel.blt(self.cube_x, self.cube_y, 0, 16, 0, 16, 16, 0)
-        elif self.cube_rotation >= 40 and self.cube_rotation < 50:
-            pyxel.blt(self.cube_x, self.cube_y, 0, 32, 0, 16, 16, 0)
-        elif self.cube_rotation >= 50 and self.cube_rotation <= 80:
-            pyxel.blt(self.cube_x, self.cube_y, 0, 48, 0, 16, 16, 0)
+        self.draw_cube()
 
-        for obstacle in self.obstacle_liste:
-            if obstacle['x'] < self.screen_x:
-                if obstacle['type']=='spike' and obstacle['turned']==False:
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 16, 16, 16, 16, 0)
-                if obstacle['type']=='spike' and obstacle['turned']==True:
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 16, 32, 16, 16, 0)
-                if obstacle['type']=='block':
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 32, 16, 16, 16)
-                if obstacle['type']=='mur':
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 0, 16, 16, 16)
-                if obstacle['type']=='orb':
-                    pyxel.blt(obstacle['x'], obstacle['y'], 0, 48, 16, 16, 16, 0)
+        #Obstacles
+        self.draw_obstacle()
 
         if self.game_over:
             pyxel.text(70, 70, "GAME OVER", 8)
