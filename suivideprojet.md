@@ -122,3 +122,6 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 ## 📅 <span style="color:orange">31/01/2026:</span>
 ### ✅ Ajouts / Changements:
 - Boutons qui fonctionnent à la fin du niveau
+- Music dans le menu changé
+### 📝 À faire:
+- Faire une meilleur musique du menu
