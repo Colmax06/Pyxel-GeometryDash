@@ -252,10 +252,12 @@ class Game:
         if self.cube_x>=self.end_level:
             self.finish_level = True
         if self.finish_level:
+            pyxel.mouse(True)
             self.stop()
-            if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < 5+16 and pyxel.mouse_x > 5 and pyxel.mouse_y < 5+16 and pyxel.mouse_y > 5 or pyxel.btnp(pyxel.KEY_ESCAPE):
+            if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < 100+16 and pyxel.mouse_x > 100 and pyxel.mouse_y < 115+16 and pyxel.mouse_y > 115 or pyxel.btnp(pyxel.KEY_ESCAPE):
                 self.QUIT_LEVEL()
-            if pyxel.btnp(pyxel.KEY_R):
+            if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < 170+16 and pyxel.mouse_x > 170 and pyxel.mouse_y < 115+16 and pyxel.mouse_y > 115 or pyxel.btnp(pyxel.KEY_R):
+                #pyxel.blt(170, 115, 1, 64, 0, 16, 16, 0) #Recommencer
                 self.level_initialisation = False
     def stop(self):
         self.speed = 0
@@ -366,10 +368,8 @@ class Game:
 
         if self.finish_level:
             pyxel.blt(self.screen_x//2-40, self.screen_y//2-20, 2, 0, 0, 64, 32 , 0) #Level complete
-            pyxel.blt(170, 115, 1, 64, 0, 16, 16, 0) #Recommencer
             pyxel.blt(100, 115, 1, 48, 0, 16, 16 , 0)   #Quitter
-            #Quitter
-            pyxel.blt(5, 5, 1, 48, 0, 16, 16,0)
+            pyxel.blt(170, 115, 1, 64, 0, 16, 16, 0) #Recommencer
         pyxel.text(self.screen_x//2-15, 5, f"{str(self.level_pourcentage)}%", 8)
 
 

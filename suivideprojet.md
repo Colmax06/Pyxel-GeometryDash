@@ -115,3 +115,10 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 ### 📝 À faire:
 - Fonction qui reset toutes les variables qu'il faut après chaque reset et chaque quit de niveau (pour éviter le désordre des variables)
 - Finir les boutons lors de la fin du niveau
+
+---
+<br></br>
+
+## 📅 <span style="color:orange">31/01/2026:</span>
+### ✅ Ajouts / Changements:
+- Boutons qui fonctionnent à la fin du niveau
