@@ -4,6 +4,7 @@ class Cube:
     def __init__(self, game):
         self.game = game
 
+        self.player_type = "cube"
         self.cube_x = 40
         self.cube_x_pourc = 0
         self.cube_y_min = 140
@@ -33,8 +34,14 @@ class Cube:
 
     def jump_rotation(self):
         #Saut du cube
-        if pyxel.btn(pyxel.KEY_SPACE) and self.game.level.jump==False:
-            self.game.level.jumping()
+        if self.player_type == "cube":
+            if pyxel.btn(pyxel.KEY_SPACE) and self.game.level.jump==False:
+                self.game.level.jumping()
+        elif self.player_type == "ball":
+            if pyxel.btnp(pyxel.KEY_SPACE) and self.game.level.jump==False:
+                self.game.level.changing_gravity()
+
+
         if not self.game.level.gravity_cube:
             self.cube_y += self.game.level.velocity_y
             self.game.level.velocity_y += self.game.level.gravity
@@ -63,11 +70,14 @@ class Cube:
 
 
     def draw_rotation_cube(self):
-        if self.cube_rotation >= 0 and self.cube_rotation < 10:
-            pyxel.blt(self.cube_x, self.cube_y, self.game.pyxres.cube['basic']['image'], self.game.pyxres.cube['basic']['x'], self.game.pyxres.cube['basic']['y'], self.game.pyxres.cube['basic']['width'], self.game.pyxres.cube['basic']['height'], 0)
-        elif self.cube_rotation >= 10 and self.cube_rotation < 40:
-            pyxel.blt(self.cube_x, self.cube_y, self.game.pyxres.cube['2']['image'], self.game.pyxres.cube['2']['x'], self.game.pyxres.cube['2']['y'], self.game.pyxres.cube['2']['width'], self.game.pyxres.cube['2']['height'], 0)
-        elif self.cube_rotation >= 40 and self.cube_rotation < 50:
-            pyxel.blt(self.cube_x, self.cube_y, self.game.pyxres.cube['3']['image'], self.game.pyxres.cube['3']['x'], self.game.pyxres.cube['3']['y'], self.game.pyxres.cube['3']['width'], self.game.pyxres.cube['3']['height'], 0)
-        elif self.cube_rotation >= 50 and self.cube_rotation <= 80:
-            pyxel.blt(self.cube_x, self.cube_y, self.game.pyxres.cube['4']['image'], self.game.pyxres.cube['4']['x'], self.game.pyxres.cube['4']['y'],  self.game.pyxres.cube['4']['width'], self.game.pyxres.cube['4']['height'], 0)
+        if self.player_type == "cube":
+            if self.cube_rotation >= 0 and self.cube_rotation < 10:
+                pyxel.blt(self.cube_x, self.cube_y, self.game.pyxres.cube['basic']['image'], self.game.pyxres.cube['basic']['x'], self.game.pyxres.cube['basic']['y'], self.game.pyxres.cube['basic']['width'], self.game.pyxres.cube['basic']['height'], 0)
+            elif self.cube_rotation >= 10 and self.cube_rotation < 40:
+                pyxel.blt(self.cube_x, self.cube_y, self.game.pyxres.cube['2']['image'], self.game.pyxres.cube['2']['x'], self.game.pyxres.cube['2']['y'], self.game.pyxres.cube['2']['width'], self.game.pyxres.cube['2']['height'], 0)
+            elif self.cube_rotation >= 40 and self.cube_rotation < 50:
+                pyxel.blt(self.cube_x, self.cube_y, self.game.pyxres.cube['3']['image'], self.game.pyxres.cube['3']['x'], self.game.pyxres.cube['3']['y'], self.game.pyxres.cube['3']['width'], self.game.pyxres.cube['3']['height'], 0)
+            elif self.cube_rotation >= 50 and self.cube_rotation <= 80:
+                pyxel.blt(self.cube_x, self.cube_y, self.game.pyxres.cube['4']['image'], self.game.pyxres.cube['4']['x'], self.game.pyxres.cube['4']['y'],  self.game.pyxres.cube['4']['width'], self.game.pyxres.cube['4']['height'], 0)
+        elif self.player_type == "ball":
+            pyxel.blt(self.cube_x, self.cube_y, 0, 64, 0,  16, 16, 0)        

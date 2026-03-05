@@ -101,6 +101,7 @@ class Level:
         self.sec_list = [0] * 64
 
         #cube
+        self.game.cube.player_type = "cube"
         self.game.cube.cube_y = self.game.cube.cube_y_min
         self.velocity_y = 0
         self.speed = self.velocity_x
