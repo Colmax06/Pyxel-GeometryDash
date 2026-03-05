@@ -1053,19 +1053,19 @@
             "type": "turned spike"
         },
         {
-            "x": 1795,
-            "y": 86,
-            "type": "gravity orb"
+            "x": 1793,
+            "y": 87,
+            "type": "gravity pad"
         },
         {
-            "x": 1884,
-            "y": 55,
-            "type": "gravity orb"
+            "x": 1943,
+            "y": 87,
+            "type": "gravity pad"
         },
         {
-            "x": 1945,
-            "y": 85,
-            "type": "gravity orb"
+            "x": 1886,
+            "y": 39,
+            "type": "gravity pad"
         }
     ]
 }

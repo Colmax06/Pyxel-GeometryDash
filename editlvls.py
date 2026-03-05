@@ -44,6 +44,7 @@ class LevelEditor:
             'jump pad': {'x': 80, 'y': self.game.screen_y-20},
             'gravity orb': {'x': 100, 'y': self.game.screen_y-40},
             'small spike': {'x': 40, 'y': self.game.screen_y-20},
+            'gravity pad': {'x': 60, 'y': self.game.screen_y-20},
         }
       
         self.difficulty_pos = {

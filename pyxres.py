@@ -90,7 +90,13 @@ class Pyxres:
                 'width': 16,
                 'height': 16
             },
-            
+            'gravity pad': {
+                'image': 0,
+                'x': 32,
+                'y': 32,
+                'width': 16,
+                'height': 16
+            },
         }
 
         self.difficulty = {
