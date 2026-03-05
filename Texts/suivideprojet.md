@@ -263,3 +263,13 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 - Ajout d'un petit spike (sa collision + son dessin)
 ### ⚠️ Problèmes Rencontrés:
 - Problème de lecture du geometrydash.pyxres à cause d'une mise à jour de pyxel studio (il fallait upgrade la lib pyxel)
+
+---
+<br></br>
+
+## 📅 <span style="color:orange">05/03/2026:</span>
+### ✅ Ajouts / Changements:
+- Ajout d'un nouveau cheat pour aller plus vite
+- Ajout du pad de changement de gravité (il n'y avait que l'orb avant)
+- Ajout du mode boule (sauté: changement de gravité)
+- Ajout de portails pour changer le mode du joueur (entre cube et boule)
