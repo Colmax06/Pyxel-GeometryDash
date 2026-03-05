@@ -1013,11 +1013,6 @@
             "type": "spike"
         },
         {
-            "x": 2076,
-            "y": 44,
-            "type": "gravity orb"
-        },
-        {
             "x": 2061,
             "y": 0,
             "type": "turned spike"
@@ -1053,19 +1048,9 @@
             "type": "turned spike"
         },
         {
-            "x": 1793,
-            "y": 87,
-            "type": "gravity pad"
-        },
-        {
-            "x": 1943,
-            "y": 87,
-            "type": "gravity pad"
-        },
-        {
-            "x": 1886,
-            "y": 39,
-            "type": "gravity pad"
+            "x": 1741,
+            "y": 86,
+            "type": "ball portal"
         }
     ]
 }
