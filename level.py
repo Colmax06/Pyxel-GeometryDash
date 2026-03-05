@@ -246,7 +246,7 @@ class Level:
                     self.changing_gravity()
 
             #Collisions
-            if self.collision(obstacle) and not obstacle['type']=='orb' and not obstacle['type']=='jump pad' and not obstacle['type']=='gravity orb' and not obstacle['type']=='gravity pad' and self.game.cheats.noclip==False:
+            if self.collision(obstacle) and not obstacle['type']=='ball portal' and not obstacle['type']=='cube portal' and not obstacle['type']=='orb' and not obstacle['type']=='jump pad' and not obstacle['type']=='gravity orb' and not obstacle['type']=='gravity pad' and self.game.cheats.noclip==False:
                 self.game_over = True
                 self.game_over_time += 2
                 self.game.music.death_sound()
