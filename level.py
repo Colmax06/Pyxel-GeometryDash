@@ -15,6 +15,7 @@ class Level:
         self.jump = False
         self.jump_status = False
         self.game_over = False
+        self.game_over_time = 0
 
         self.gravity_cube = False
 
@@ -106,6 +107,7 @@ class Level:
         self.jump = False
         self.game_over = False
         self.finish = False
+        self.game_over_time = 0
 
         self.gravity_cube = False
 
@@ -214,9 +216,10 @@ class Level:
             #Collisions
             if self.collision(obstacle) and not obstacle['type']=='orb' and not obstacle['type']=='jump pad' and not obstacle['type']=='gravity orb' and self.game.cheats.noclip==False:
                 self.game_over = True
+                self.game_over_time += 2
                 self.game.music.death_sound()
                 self.stop()
-                if pyxel.btnp(pyxel.KEY_R):
+                if self.game_over_time >= 40:
                     self.initialisation = False
     def collision(self, obstacle): #Utilisé dans obstacles_gestion()
         #obstacle hors écran
@@ -343,7 +346,6 @@ class Level:
 
             if self.game_over:
                 pyxel.text(70, 70, "GAME OVER", 8)
-                pyxel.text(55, 80, "R pour recommencer", 7)
 
             if self.finish:
                 pyxel.blt(self.game.screen_x//2-40, self.game.screen_y//2-20, 2, 0, 0, 64, 32 , 0) #Level complete
