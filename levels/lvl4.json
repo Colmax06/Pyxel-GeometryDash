@@ -1,5 +1,5 @@
 {
-    "level_length": 434,
+    "level_length": 463,
     "difficulty": "NA",
     "obstacles": [
         {
@@ -191,6 +191,181 @@
             "x": 179,
             "y": 137,
             "type": "ball portal"
+        },
+        {
+            "x": 175,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 189,
+            "y": 57,
+            "type": "block"
+        },
+        {
+            "x": 189,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 199,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 206,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 213,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 219,
+            "y": 57,
+            "type": "block"
+        },
+        {
+            "x": 225,
+            "y": 57,
+            "type": "block"
+        },
+        {
+            "x": 227,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 230,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 237,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 247,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 252,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 261,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 264,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 271,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 277,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 284,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 292,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 301,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 304,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 312,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 316,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 325,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 329,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 336,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 348,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 362,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 376,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 390,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 403,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 414,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 428,
+            "y": 57,
+            "type": "block"
+        },
+        {
+            "x": 426,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 438,
+            "y": 58,
+            "type": "block"
         }
     ]
 }

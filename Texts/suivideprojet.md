@@ -273,3 +273,4 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 - Ajout du pad de changement de gravité (il n'y avait que l'orb avant)
 - Ajout du mode boule (sauté: changement de gravité)
 - Ajout de portails pour changer le mode du joueur (entre cube et boule)
+- On a continué les niveaux
