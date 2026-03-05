@@ -36,6 +36,8 @@ class LevelEditor:
         self.obstacles_pos = {
             'place': {'x': 1, 'y': self.game.screen_y-40},
             'delete': {'x': 1, 'y': self.game.screen_y-20},
+            'cube portal': {'x': 120, 'y': self.game.screen_y-20},
+            'ball portal': {'x': 140, 'y': self.game.screen_y-20},
             'spike': {'x': 20, 'y': self.game.screen_y-40},
             'turned spike': {'x': 20, 'y': self.game.screen_y-20},
             'block': {'x': 40, 'y': self.game.screen_y-40},

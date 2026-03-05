@@ -29,6 +29,18 @@ class Level:
 
         
         self.collisions = {
+            'cube portal': {
+                'obs_gauche': 4,
+                'obs_droit': 11,
+                'obs_haut': 0,
+                'obs_bas': 16
+            },
+            'ball portal': {
+                'obs_gauche': 4,
+                'obs_droit': 11,
+                'obs_haut': 0,
+                'obs_bas': 16
+            },
             'spike': {
                 'obs_gauche': 4,
                 'obs_droit': 11,
@@ -214,8 +226,16 @@ class Level:
                     self.jumping()
                     self.velocity_y = self.jump_pad_strength
 
+            if obstacle['type']=='cube portal':
+                if self.collision(obstacle):
+                    self.game.cube.player_type = "cube"
+
+            if obstacle['type']=='ball portal':
+                if self.collision(obstacle):
+                    self.game.cube.player_type = "ball"
+
             #Collisions
-            if self.collision(obstacle) and not obstacle['type']=='orb' and not obstacle['type']=='jump pad' and not obstacle['type']=='gravity orb' and self.game.cheats.noclip==False:
+            if self.collision(obstacle) and not obstacle['type']=='orb' and not obstacle['type']=='ball portal' and not obstacle['type']=='cube portal' and not obstacle['type']=='jump pad' and not obstacle['type']=='gravity orb' and self.game.cheats.noclip==False:
                 self.game_over = True
                 self.game_over_time += 2
                 self.game.music.death_sound()

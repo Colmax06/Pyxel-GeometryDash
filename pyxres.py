@@ -34,6 +34,20 @@ class Pyxres:
         }
 
         self.obstacles = {
+            'cube portal': {
+                'image': 0,
+                'x': 0,
+                'y': 64,
+                'width': 16,
+                'height': 16
+            },
+            'ball portal': {
+                'image': 0,
+                'x': 16,
+                'y': 64,
+                'width': 16,
+                'height': 16
+            },
             'spike': {
                 'image': 0,
                 'x': 16,
