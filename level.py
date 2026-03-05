@@ -89,6 +89,12 @@ class Level:
                 'obs_haut': 11,
                 'obs_bas': 16
             },
+            'gravity pad': {
+                'obs_gauche': 0,
+                'obs_droit': 16,
+                'obs_haut': 14,
+                'obs_bas': 16
+            },
         }
         
         self.death_sound_var = False
@@ -226,6 +232,7 @@ class Level:
                     self.jumping()
                     self.velocity_y = self.jump_pad_strength
 
+<<<<<<< HEAD
             if obstacle['type']=='cube portal':
                 if self.collision(obstacle):
                     self.game.cube.player_type = "cube"
@@ -236,6 +243,15 @@ class Level:
 
             #Collisions
             if self.collision(obstacle) and not obstacle['type']=='orb' and not obstacle['type']=='ball portal' and not obstacle['type']=='cube portal' and not obstacle['type']=='jump pad' and not obstacle['type']=='gravity orb' and self.game.cheats.noclip==False:
+=======
+            #Utilisation du gravity pad
+            if obstacle['type']=='gravity pad':
+                 if self.collision(obstacle):
+                    self.changing_gravity()
+
+            #Collisions
+            if self.collision(obstacle) and not obstacle['type']=='orb' and not obstacle['type']=='jump pad' and not obstacle['type']=='gravity orb' and not obstacle['type']=='gravity pad' and self.game.cheats.noclip==False:
+>>>>>>> b673085ee497df7034f6ad5a95d23bba3699899a
                 self.game_over = True
                 self.game_over_time += 2
                 self.game.music.death_sound()
