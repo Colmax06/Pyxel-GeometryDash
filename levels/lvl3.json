@@ -1,5 +1,5 @@
 {
-    "level_length": 2133,
+    "level_length": 3003,
     "difficulty": "insane",
     "obstacles": [
         {
@@ -1051,6 +1051,551 @@
             "x": 1741,
             "y": 86,
             "type": "ball portal"
+        },
+        {
+            "x": 2028,
+            "y": 126,
+            "type": "block"
+        },
+        {
+            "x": 2042,
+            "y": 126,
+            "type": "block"
+        },
+        {
+            "x": 2055,
+            "y": 126,
+            "type": "block"
+        },
+        {
+            "x": 2070,
+            "y": 126,
+            "type": "block"
+        },
+        {
+            "x": 2068,
+            "y": 126,
+            "type": "block"
+        },
+        {
+            "x": 2083,
+            "y": 126,
+            "type": "block"
+        },
+        {
+            "x": 2097,
+            "y": 126,
+            "type": "block"
+        },
+        {
+            "x": 2111,
+            "y": 126,
+            "type": "block"
+        },
+        {
+            "x": 2117,
+            "y": 83,
+            "type": "block"
+        },
+        {
+            "x": 2130,
+            "y": 83,
+            "type": "block"
+        },
+        {
+            "x": 2143,
+            "y": 83,
+            "type": "block"
+        },
+        {
+            "x": 2157,
+            "y": 83,
+            "type": "block"
+        },
+        {
+            "x": 2170,
+            "y": 83,
+            "type": "block"
+        },
+        {
+            "x": 2194,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2208,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2221,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2235,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2249,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2263,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2276,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2290,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2304,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2317,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2261,
+            "y": 64,
+            "type": "turned spike"
+        },
+        {
+            "x": 2278,
+            "y": 64,
+            "type": "turned spike"
+        },
+        {
+            "x": 2243,
+            "y": 106,
+            "type": "block"
+        },
+        {
+            "x": 2257,
+            "y": 106,
+            "type": "block"
+        },
+        {
+            "x": 2271,
+            "y": 106,
+            "type": "block"
+        },
+        {
+            "x": 2286,
+            "y": 106,
+            "type": "block"
+        },
+        {
+            "x": 2284,
+            "y": 106,
+            "type": "block"
+        },
+        {
+            "x": 2300,
+            "y": 106,
+            "type": "block"
+        },
+        {
+            "x": 2330,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2343,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2356,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2370,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2383,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2230,
+            "y": 106,
+            "type": "block"
+        },
+        {
+            "x": 1955,
+            "y": 140,
+            "type": "spike"
+        },
+        {
+            "x": 1973,
+            "y": 140,
+            "type": "spike"
+        },
+        {
+            "x": 1990,
+            "y": 140,
+            "type": "spike"
+        },
+        {
+            "x": 2007,
+            "y": 140,
+            "type": "spike"
+        },
+        {
+            "x": 2231,
+            "y": 140,
+            "type": "spike"
+        },
+        {
+            "x": 2231,
+            "y": 121,
+            "type": "turned spike"
+        },
+        {
+            "x": 2148,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2165,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2182,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2199,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2313,
+            "y": 106,
+            "type": "block"
+        },
+        {
+            "x": 2399,
+            "y": 94,
+            "type": "block"
+        },
+        {
+            "x": 2413,
+            "y": 94,
+            "type": "block"
+        },
+        {
+            "x": 2427,
+            "y": 94,
+            "type": "block"
+        },
+        {
+            "x": 2440,
+            "y": 94,
+            "type": "block"
+        },
+        {
+            "x": 2397,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2410,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2424,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2422,
+            "y": 64,
+            "type": "turned spike"
+        },
+        {
+            "x": 2438,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2452,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2465,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2479,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2493,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2454,
+            "y": 94,
+            "type": "block"
+        },
+        {
+            "x": 2468,
+            "y": 94,
+            "type": "block"
+        },
+        {
+            "x": 2482,
+            "y": 94,
+            "type": "block"
+        },
+        {
+            "x": 2494,
+            "y": 94,
+            "type": "block"
+        },
+        {
+            "x": 2508,
+            "y": 94,
+            "type": "block"
+        },
+        {
+            "x": 2506,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2462,
+            "y": 79,
+            "type": "spike"
+        },
+        {
+            "x": 2505,
+            "y": 64,
+            "type": "turned spike"
+        },
+        {
+            "x": 2543,
+            "y": 11,
+            "type": "block"
+        },
+        {
+            "x": 2557,
+            "y": 11,
+            "type": "block"
+        },
+        {
+            "x": 2571,
+            "y": 11,
+            "type": "block"
+        },
+        {
+            "x": 2585,
+            "y": 11,
+            "type": "block"
+        },
+        {
+            "x": 2599,
+            "y": 11,
+            "type": "block"
+        },
+        {
+            "x": 2613,
+            "y": 11,
+            "type": "block"
+        },
+        {
+            "x": 2639,
+            "y": 114,
+            "type": "orb"
+        },
+        {
+            "x": 2614,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2630,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2646,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2597,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2580,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2562,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2547,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2531,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2690,
+            "y": 118,
+            "type": "block"
+        },
+        {
+            "x": 2704,
+            "y": 118,
+            "type": "block"
+        },
+        {
+            "x": 2718,
+            "y": 118,
+            "type": "block"
+        },
+        {
+            "x": 2717,
+            "y": 103,
+            "type": "jump pad"
+        },
+        {
+            "x": 2875,
+            "y": 0,
+            "type": "turned spike"
+        },
+        {
+            "x": 2723,
+            "y": -1,
+            "type": "turned spike"
+        },
+        {
+            "x": 2738,
+            "y": -1,
+            "type": "turned spike"
+        },
+        {
+            "x": 2753,
+            "y": -2,
+            "type": "turned spike"
+        },
+        {
+            "x": 2767,
+            "y": -1,
+            "type": "turned spike"
+        },
+        {
+            "x": 2782,
+            "y": -1,
+            "type": "turned spike"
+        },
+        {
+            "x": 2813,
+            "y": 0,
+            "type": "turned spike"
+        },
+        {
+            "x": 2797,
+            "y": 0,
+            "type": "turned spike"
+        },
+        {
+            "x": 2338,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2355,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2372,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2389,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 2405,
+            "y": 140,
+            "type": "small spike"
+        },
+        {
+            "x": 1761,
+            "y": 0,
+            "type": "turned spike"
+        },
+        {
+            "x": 1778,
+            "y": 0,
+            "type": "turned spike"
+        },
+        {
+            "x": 1793,
+            "y": 22,
+            "type": "spike"
+        },
+        {
+            "x": 2817,
+            "y": 140,
+            "type": "cube portal"
+        },
+        {
+            "x": 2913,
+            "y": 140,
+            "type": "spike"
+        },
+        {
+            "x": 2978,
+            "y": 0,
+            "type": "turned spike"
+        },
+        {
+            "x": 2898,
+            "y": 140,
+            "type": "spike"
+        },
+        {
+            "x": 2928,
+            "y": 140,
+            "type": "spike"
         }
     ]
 }
