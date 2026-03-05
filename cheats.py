@@ -31,3 +31,5 @@ class Cheats:
     def cheats_draw(self):
         if self.noclip:
             pyxel.text(self.game.screen_x-30,5,"NOCLIP",8)
+        if self.speedlvl:
+            pyxel.text(self.game.screen_x-80,5,"SPEED BOOST",8)
