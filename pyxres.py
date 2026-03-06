@@ -104,6 +104,13 @@ class Pyxres:
                 'width': 16,
                 'height': 16
             },
+            'small turned spike': {
+                'image': 0,
+                'x': 0,
+                'y': 48,
+                'width': 16,
+                'height': 16
+            },
             'gravity pad': {
                 'image': 0,
                 'x': 32,

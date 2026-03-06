@@ -89,6 +89,12 @@ class Level:
                 'obs_haut': 11,
                 'obs_bas': 16
             },
+            'small turned spike': {
+                'obs_gauche': 4,
+                'obs_droit': 11,
+                'obs_haut': 0,
+                'obs_bas': 5
+            },
             'gravity pad': {
                 'obs_gauche': 0,
                 'obs_droit': 16,
