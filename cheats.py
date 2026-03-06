@@ -6,6 +6,8 @@ class Cheats:
         self.speedlvl = False
         self.noclip = False
 
+        self.increased_speed = self.game.level.velocity_x*3
+
     def noclip_change(self):
         if pyxel.btnp(pyxel.KEY_N):
             if self.noclip:
@@ -17,7 +19,7 @@ class Cheats:
     def speedlvl_change(self):
         if pyxel.btnp(pyxel.KEY_B):
             if not self.speedlvl:
-                self.game.level.speed = self.game.level.velocity_x*3
+                self.game.level.speed = self.increased_speed
                 return True
             elif self.speedlvl:
                 self.game.level.speed = self.game.level.velocity_x

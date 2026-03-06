@@ -30,8 +30,8 @@ class Game:
         self.level_editor = LevelEditor(self)
         self.menu = Menu(self)
         self.cube = Cube(self)
-        self.cheats = Cheats(self)
         self.level = Level(self)
+        self.cheats = Cheats(self)
         self.music = Music(self)
 
 

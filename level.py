@@ -143,6 +143,9 @@ class Level:
         self.end_pourc = self.end
         self.game.cube.cube_x_pourc = 0
 
+        #Cheats
+        self.game.cheats.noclip = False
+        self.game.cheats.speedlvl = False
 
     def get_lvl_data(self):
         if not self.current_level in self.game.levels:
@@ -329,7 +332,10 @@ class Level:
             #Reprendre le niveau
             if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and pyxel.mouse_x < self.game.screen_x/2+16 and pyxel.mouse_x > self.game.screen_x/2-16 and pyxel.mouse_y < self.game.screen_y/2+16 and pyxel.mouse_y > self.game.screen_y/2-16:
                 self.game.music.resume_song()
-                self.speed = self.velocity_x
+                if self.game.cheats.speedlvl:
+                    self.speed = self.game.cheats.increased_speed
+                else:
+                    self.speed = self.velocity_x
                 self.jump = self.jump_status
                 self.jump_status = False
                 pyxel.mouse(False)
