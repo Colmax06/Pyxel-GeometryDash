@@ -69,8 +69,7 @@ class Game:
         self.level.niveau_update()
 
         #Lvl editor
-        self.level_editor.editor_update()
-
+        self.level_editor.editor_update()  
         #Cheats
         self.cheats.cheats_update()
 
