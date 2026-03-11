@@ -394,8 +394,6 @@ class Level:
                 if obstacle['x'] < self.game.screen_x:
                     pyxel.blt(obstacle['x'], obstacle['y'], self.game.pyxres.obstacles[obstacle['type']]['image'], self.game.pyxres.obstacles[obstacle['type']]['x'], self.game.pyxres.obstacles[obstacle['type']]['y'], self.game.pyxres.obstacles[obstacle['type']]['width'], self.game.pyxres.obstacles[obstacle['type']]['height'], 0)
 
-            if self.game_over:
-                pyxel.text(70, 70, "GAME OVER", 8)
 
             if self.finish:
                 pyxel.blt(self.game.screen_x//2-40, self.game.screen_y//2-20, 2, 0, 0, 64, 32 , 0) #Level complete
