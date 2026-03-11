@@ -54,10 +54,10 @@ class Level:
                 'obs_bas': 7
             },
             'block': {
-                'obs_gauche': 0,
-                'obs_droit': 16,
-                'obs_haut': 0,
-                'obs_bas': 16
+                'obs_gauche': 1,
+                'obs_droit': 15,
+                'obs_haut': 1,
+                'obs_bas': 15
             },
             'mur': {
                 'obs_gauche': 0,
