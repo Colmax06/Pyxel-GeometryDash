@@ -153,7 +153,7 @@ class Pyxres:
                 'image': 2,
                 'x': 55,
                 'y': 45,
-                'width': 17,
+                'width': 18,
                 'height': 18
             }
         }
