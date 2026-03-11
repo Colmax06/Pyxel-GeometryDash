@@ -274,3 +274,13 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 - Ajout du mode boule (sauté: changement de gravité)
 - Ajout de portails pour changer le mode du joueur (entre cube et boule)
 - On a continué les niveaux
+
+---
+<br></br>
+
+## 📅 <span style="color:orange">11/03/2026:</span>
+### ✅ Ajouts / Changements:
+- Finit les niveaux + niv4
+- coins
+- nouvelle difficulté démon (niv4)
+- enlever le gameover (quand on meurt) --> quand le joueur meurt, le cube/boule est cassé
