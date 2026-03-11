@@ -284,3 +284,4 @@ J'ai fais en sorte que le programme regarde le y du cube et regarde que si il a 
 - coins
 - nouvelle difficulté démon (niv4)
 - enlever le gameover (quand on meurt) --> quand le joueur meurt, le cube/boule est cassé
+- coins au niveau 3

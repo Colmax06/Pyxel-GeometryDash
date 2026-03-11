@@ -328,11 +328,6 @@
             "type": "gravity orb"
         },
         {
-            "x": 1465,
-            "y": 76,
-            "type": "gravity orb"
-        },
-        {
             "x": 1447,
             "y": 20,
             "type": "block"
@@ -364,21 +359,6 @@
         },
         {
             "x": 1530,
-            "y": 20,
-            "type": "block"
-        },
-        {
-            "x": 1544,
-            "y": 20,
-            "type": "block"
-        },
-        {
-            "x": 1558,
-            "y": 20,
-            "type": "block"
-        },
-        {
-            "x": 1572,
             "y": 20,
             "type": "block"
         },
@@ -434,11 +414,6 @@
         },
         {
             "x": 1648,
-            "y": 0,
-            "type": "turned spike"
-        },
-        {
-            "x": 1664,
             "y": 0,
             "type": "turned spike"
         },
@@ -1596,6 +1571,36 @@
             "x": 2928,
             "y": 140,
             "type": "spike"
+        },
+        {
+            "x": 1229,
+            "y": 39,
+            "type": "coins"
+        },
+        {
+            "x": 1664,
+            "y": 0,
+            "type": "turned spike"
+        },
+        {
+            "x": 1544,
+            "y": 20,
+            "type": "block"
+        },
+        {
+            "x": 1558,
+            "y": 20,
+            "type": "block"
+        },
+        {
+            "x": 1572,
+            "y": 20,
+            "type": "block"
+        },
+        {
+            "x": 1452,
+            "y": 84,
+            "type": "gravity orb"
         }
     ]
 }
