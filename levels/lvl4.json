@@ -1,6 +1,6 @@
 {
     "level_length": 2865,
-    "difficulty": "NA",
+    "difficulty": "insane",
     "obstacles": [
         {
             "x": 163,
@@ -2543,11 +2543,6 @@
             "type": "block"
         },
         {
-            "x": 2439,
-            "y": 84,
-            "type": "block"
-        },
-        {
             "x": 2440,
             "y": 89,
             "type": "block"
@@ -2893,11 +2888,6 @@
             "type": "mur"
         },
         {
-            "x": 2727,
-            "y": 11,
-            "type": "mur"
-        },
-        {
             "x": 2680,
             "y": 43,
             "type": "mur"
@@ -2941,6 +2931,331 @@
             "x": 2840,
             "y": 0,
             "type": "turned spike"
+        },
+        {
+            "x": 2663,
+            "y": 26,
+            "type": "block"
+        },
+        {
+            "x": 2670,
+            "y": 26,
+            "type": "block"
+        },
+        {
+            "x": 2678,
+            "y": 26,
+            "type": "block"
+        },
+        {
+            "x": 2690,
+            "y": 26,
+            "type": "block"
+        },
+        {
+            "x": 2702,
+            "y": 26,
+            "type": "block"
+        },
+        {
+            "x": 2713,
+            "y": 26,
+            "type": "block"
+        },
+        {
+            "x": 2727,
+            "y": 11,
+            "type": "mur"
+        },
+        {
+            "x": 2725,
+            "y": 26,
+            "type": "block"
+        },
+        {
+            "x": 2728,
+            "y": 26,
+            "type": "block"
+        },
+        {
+            "x": 2728,
+            "y": 33,
+            "type": "block"
+        },
+        {
+            "x": 2726,
+            "y": 35,
+            "type": "block"
+        },
+        {
+            "x": 2726,
+            "y": 49,
+            "type": "block"
+        },
+        {
+            "x": 2728,
+            "y": 47,
+            "type": "block"
+        },
+        {
+            "x": 2728,
+            "y": 56,
+            "type": "block"
+        },
+        {
+            "x": 2726,
+            "y": 60,
+            "type": "block"
+        },
+        {
+            "x": 2726,
+            "y": 69,
+            "type": "block"
+        },
+        {
+            "x": 2728,
+            "y": 70,
+            "type": "block"
+        },
+        {
+            "x": 2728,
+            "y": 82,
+            "type": "block"
+        },
+        {
+            "x": 2726,
+            "y": 82,
+            "type": "block"
+        },
+        {
+            "x": 2728,
+            "y": 92,
+            "type": "block"
+        },
+        {
+            "x": 2720,
+            "y": 92,
+            "type": "block"
+        },
+        {
+            "x": 2711,
+            "y": 92,
+            "type": "block"
+        },
+        {
+            "x": 2702,
+            "y": 92,
+            "type": "block"
+        },
+        {
+            "x": 2688,
+            "y": 92,
+            "type": "block"
+        },
+        {
+            "x": 2676,
+            "y": 92,
+            "type": "block"
+        },
+        {
+            "x": 2663,
+            "y": 92,
+            "type": "block"
+        },
+        {
+            "x": 2663,
+            "y": 79,
+            "type": "block"
+        },
+        {
+            "x": 2663,
+            "y": 65,
+            "type": "block"
+        },
+        {
+            "x": 2663,
+            "y": 53,
+            "type": "block"
+        },
+        {
+            "x": 2663,
+            "y": 45,
+            "type": "block"
+        },
+        {
+            "x": 2663,
+            "y": 39,
+            "type": "block"
+        },
+        {
+            "x": 2665,
+            "y": 39,
+            "type": "block"
+        },
+        {
+            "x": 2665,
+            "y": 48,
+            "type": "block"
+        },
+        {
+            "x": 2665,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 2665,
+            "y": 70,
+            "type": "block"
+        },
+        {
+            "x": 2665,
+            "y": 80,
+            "type": "block"
+        },
+        {
+            "x": 2674,
+            "y": 90,
+            "type": "block"
+        },
+        {
+            "x": 2684,
+            "y": 90,
+            "type": "block"
+        },
+        {
+            "x": 2694,
+            "y": 90,
+            "type": "block"
+        },
+        {
+            "x": 2706,
+            "y": 90,
+            "type": "block"
+        },
+        {
+            "x": 2714,
+            "y": 90,
+            "type": "block"
+        },
+        {
+            "x": 2695,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 2696,
+            "y": 58,
+            "type": "block"
+        },
+        {
+            "x": 2696,
+            "y": 60,
+            "type": "block"
+        },
+        {
+            "x": 2695,
+            "y": 60,
+            "type": "block"
+        },
+        {
+            "x": 2676,
+            "y": 28,
+            "type": "block"
+        },
+        {
+            "x": 2685,
+            "y": 28,
+            "type": "block"
+        },
+        {
+            "x": 2694,
+            "y": 28,
+            "type": "block"
+        },
+        {
+            "x": 2704,
+            "y": 28,
+            "type": "block"
+        },
+        {
+            "x": 2713,
+            "y": 28,
+            "type": "block"
+        },
+        {
+            "x": 2720,
+            "y": 28,
+            "type": "block"
+        },
+        {
+            "x": 2648,
+            "y": -5,
+            "type": "gravity pad"
+        },
+        {
+            "x": 2664,
+            "y": -5,
+            "type": "gravity pad"
+        },
+        {
+            "x": 2680,
+            "y": -5,
+            "type": "gravity pad"
+        },
+        {
+            "x": 2696,
+            "y": -5,
+            "type": "gravity pad"
+        },
+        {
+            "x": 2712,
+            "y": -5,
+            "type": "gravity pad"
+        },
+        {
+            "x": 2728,
+            "y": -5,
+            "type": "gravity pad"
+        },
+        {
+            "x": 2743,
+            "y": -5,
+            "type": "gravity pad"
+        },
+        {
+            "x": 2648,
+            "y": 123,
+            "type": "small turned spike"
+        },
+        {
+            "x": 2664,
+            "y": 123,
+            "type": "small turned spike"
+        },
+        {
+            "x": 2680,
+            "y": 123,
+            "type": "small turned spike"
+        },
+        {
+            "x": 2696,
+            "y": 123,
+            "type": "small turned spike"
+        },
+        {
+            "x": 2712,
+            "y": 123,
+            "type": "small turned spike"
+        },
+        {
+            "x": 2728,
+            "y": 123,
+            "type": "small turned spike"
+        },
+        {
+            "x": 2743,
+            "y": 123,
+            "type": "small turned spike"
         }
     ]
 }
