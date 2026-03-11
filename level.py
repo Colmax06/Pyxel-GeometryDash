@@ -66,10 +66,10 @@ class Level:
                 'obs_bas': 16
             },
             'orb': {
-                'obs_gauche': -2,
-                'obs_droit': 18,
-                'obs_haut': -2,
-                'obs_bas': 18
+                'obs_gauche': -5,
+                'obs_droit': 21,
+                'obs_haut': -5,
+                'obs_bas': 21
             },
             'jump pad': {
                 'obs_gauche': 0,
@@ -78,10 +78,10 @@ class Level:
                 'obs_bas': 16
             },
             'gravity orb': {
-                'obs_gauche': -2,
-                'obs_droit': 18,
-                'obs_haut': -2,
-                'obs_bas': 18
+                'obs_gauche': -5,
+                'obs_droit': 21,
+                'obs_haut': -5,
+                'obs_bas': 21
             },
             'small spike': {
                 'obs_gauche': 4,
