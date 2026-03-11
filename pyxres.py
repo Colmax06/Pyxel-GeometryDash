@@ -148,5 +148,12 @@ class Pyxres:
                 'y': 48,
                 'width': 16,
                 'height': 16
+            },
+            'demon': {
+                'image': 2,
+                'x': 55,
+                'y': 45,
+                'width': 17,
+                'height': 18
             }
         }
