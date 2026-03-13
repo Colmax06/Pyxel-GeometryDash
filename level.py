@@ -109,26 +109,24 @@ class Level:
             },
         }
         
-        self.death_sound_var = False
+        
 
         #Game
         self.in_level = False
         self.ESC_level = False
         self.current_level = 'lvl1'
 
-        self.music_position = None
-        self.sound = 0
-        self.sec = 0
-        self.sec_list = [0] * 64
+        
+        
 
     def default_var(self):
         #music
         self.game.menu.menu_song_var = False
-        self.death_sound_var = False
-        self.music_position = None
-        self.sound = 0
-        self.sec = 0
-        self.sec_list = [0] * 64
+        self.game.music.death_sound_var = False
+        self.game.music.music_position = None
+        self.game.music.sound = 0
+        self.game.music.sec = 0
+        self.game.music.sec_list = [0] * 64
 
         #cube
         self.game.cube.player_type = "cube"
