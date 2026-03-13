@@ -10,7 +10,6 @@ class Menu:
         self.game_menu = 1
         self.chosen_level  = 1
         self.chosen_level_max = 0
-        self.play_button_list = []
 
         
         
