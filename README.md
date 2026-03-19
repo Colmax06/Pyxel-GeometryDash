@@ -9,5 +9,7 @@ Requirements:
 
 ### Cheats:
 - N : Noclip
+- B : Boost vitesse x3
+
 
 THIS IS NOT A GAME MADE BY ROPTOP
